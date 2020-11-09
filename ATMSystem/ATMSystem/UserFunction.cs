@@ -61,6 +61,8 @@ namespace ATMSystem
                     break;
                 case "withdraw":
                     functionList.Add(FC.requestUserPW);
+                    functionList.Add(FC.requestAmount);
+
                     break;
                 case "fund":
                     functionList.Add(FC.requestUserPW);
@@ -109,19 +111,19 @@ namespace ATMSystem
         void requestUserID()//ユーザーID入力
         {
             ////ユーザーID
-            InputIDPage inputIDPage = new InputIDPage("ID");
+            InputIDPage inputIDPage = new InputIDPage("ID","IDを入力してください");
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) id = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
-                confirmID();//ID確認もID要求の中で行う
+                confirmID(id);//ID確認もID要求の中で行う
         }
 
-        void confirmID()
+        void confirmID(int idd)//IDが存在しているか確認
         {
             Account account;
             try
             {
-                account = new Account(id);
+                account = new Account(idd);
                 userAccount = account;
             }
             catch (Exception exception)
@@ -134,8 +136,6 @@ namespace ATMSystem
                     //throw;
                 }
             }
-
-
         }
 
 
@@ -143,10 +143,11 @@ namespace ATMSystem
         void requestPayeeID()//振込先ID入力
         {
 
-            InputIDPage inputIDPage = new InputIDPage("振込先ID");
+            InputIDPage inputIDPage = new InputIDPage("振込先ID","振込先IDを入力してください");
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) payeeId = inputIDPage.id;
-
+            if (!(canceled = inputIDPage.isCanceled))
+                confirmID(payeeId);//ID確認もID要求の中で行う
         }
 
 
@@ -154,7 +155,7 @@ namespace ATMSystem
 
         void requestPW()//PW入力
         {
-            InputPWPage inputPWPage = new InputPWPage("PW");
+            InputPWPage inputPWPage = new InputPWPage("パスワード","パスワードを入力してください");
             Application.Run(inputPWPage);
 
         }
@@ -167,11 +168,12 @@ namespace ATMSystem
 
         void requestAmount()//取引金額入力
         {
-            //InputAmountPage inputAmountPage = new InputAmountPage();
-            //inputAmountPage.Owner = Application.Current.MainWindow;
-            //inputAmountPage.Show();
+            InputAmountPage inputAmountPage = new InputAmountPage("取引金額",,functionName);
+            Application.Run(inputAmountPage);
         }
 
+
+        
     }
 
 

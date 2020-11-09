@@ -35,6 +35,7 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.note = new System.Windows.Forms.Label();
+            this.explain = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // confirmButton
@@ -91,11 +92,24 @@
             this.note.TabIndex = 4;
             this.note.Text = "Note";
             // 
+            // explain
+            // 
+            this.explain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.explain.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.explain.Location = new System.Drawing.Point(85, 87);
+            this.explain.Name = "explain";
+            this.explain.Size = new System.Drawing.Size(652, 70);
+            this.explain.TabIndex = 5;
+            this.explain.Text = "label";
+            this.explain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InputPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.explain);
             this.Controls.Add(this.note);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox);
@@ -116,5 +130,6 @@
         protected System.IO.Ports.SerialPort serialPort1;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label note;
+        protected System.Windows.Forms.Label explain;
     }
 }

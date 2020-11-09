@@ -18,7 +18,7 @@ namespace ATMSystem
         const int TEXTLENGTH = 4;
 
 
-        public InputPWPage(string str) : base(str)
+        public InputPWPage(string str,string exp) : base(str,exp)
         {
             InitializeComponent();
         }
@@ -31,26 +31,6 @@ namespace ATMSystem
             id = idd;
             base.confirmButton_Click(sender, e);
 
-            //charCorrect = true;
-            //var judgeText = textBox.Text.ToString();
-
-            //try
-            //{
-            //    id = int.Parse(judgeText);
-            //}
-            //catch (FormatException)
-            //{
-            //    charCorrect = false;
-            //    note.Text = "数字以外の文字が入力されました。\n4秒後に機能選択画面に戻ります。";
-            //    var t = Task.Delay(4000);
-            //    t.Wait();
-            //    this.Close();
-            //}
-            //var digitsIsSeven = (judgeText.Length == 4);
-            //note.Text = (charCorrect &= digitsIsSeven) ? "" : "桁数が間違っています。";//注意文変更
-            //textBox.Text = "";//textBoxクリア
-            //if (charCorrect)
-            //    base.confirmButton_Click(sender, e);//OKなら
         }
     }
 }

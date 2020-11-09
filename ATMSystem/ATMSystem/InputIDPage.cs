@@ -15,9 +15,9 @@ namespace ATMSystem
         public int id { get; set; }
         // public int id;
         const int TEXTLENGTH = 7;
-        //public bool charCorrect { get; set; }
+      //  public bool charCorrect { get; set; }
 
-        public InputIDPage(string str) : base(str)
+        public InputIDPage(string str,string exp) : base(str,exp)
         {
             InitializeComponent();
         }

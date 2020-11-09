@@ -11,35 +11,67 @@ namespace ATMSystem
 {
     public partial class InputAmountPage : ATMSystem.InputPage
     {
-        int id;
+        int amount=0;
         bool charError = false;
+        string functionName="deposit";
+        const int AMOUNTLIMIT = 200000;
+        const int BILLLIMIT = 20;
 
-        public InputAmountPage(string str):base(str)
+
+
+        public InputAmountPage(string str,string exp):base(str,exp)
         {
             InitializeComponent();
         }
 
+        public InputAmountPage(string str,string exp,string fn) : this(str,exp)
+        {
+            functionName = fn;
+
+        }
+
+    
+
+        private bool checkBillCount()
+        {
+            return true;
+        }
+
         protected override void confirmButton_Click(object sender, EventArgs e)
         {
+            //預入では各種20枚が限度
+            //引出では20万が限度
+            var textBox = (System.Windows.Forms.TextBox)sender;
             var judgeText = textBox.Text.ToString();
+            //var digits = (judgeText.Length == 7);
 
             try
             {
-                id = int.Parse(judgeText);
+                amount = int.Parse(judgeText);
             }
             catch (FormatException)
             {
-                charError = true;
-                note.Text = "数字以外の文字が入力されました。\n4秒後に機能選択画面に戻ります。";
-                var t = Task.Delay(4000);
-                t.Wait();
-                this.Close();
+                note.Text = string.Format("数字を入力してください。");
             }
-            var digitsIsSeven = (judgeText.Length == 7);
-            note.Text = digitsIsSeven ? "" : "桁数が間違っています。";//注意文変更
-            textBox.Text = "";//textBoxクリア
-            if (digitsIsSeven && !charError)
-                base.confirmButton_Click(sender, e);//OKなら
+
+            switch (functionName)
+            {
+                case "deposit":
+                    break;
+                case "withdraw":
+                    //20万まで
+                    note.Text = string.Format("。");
+                    break;
+                case "fund":
+                    break;
+                default:
+                    break;
+            }
+
+            //confirmButton.Enabled = digits;//7桁でボタンを押せるように
+          //  note.Text = (confirmButton.Enabled = digits) ? "" : "桁数が間違っています。";
+
+            base.confirmButton_Click(sender, e);
         }
 
 

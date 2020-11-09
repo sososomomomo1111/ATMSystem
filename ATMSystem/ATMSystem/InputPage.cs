@@ -21,13 +21,13 @@ namespace ATMSystem
 
         public InputPage()
         {
-            InitializeComponent();
             note.Text = "";
         }
 
-        public InputPage(string text) : this()
+        public InputPage(string text,string exp) : this()
         {
             label1.Text = text;
+            explain.Text = exp;
         }
 
         protected void label1_Click(object sender, EventArgs e)
