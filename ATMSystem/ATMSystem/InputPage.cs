@@ -21,6 +21,7 @@ namespace ATMSystem
 
         public InputPage()
         {
+            InitializeComponent();
             note.Text = "";
         }
 
@@ -68,6 +69,11 @@ namespace ATMSystem
                 }
                 this.Close();
             }
+            catch (OverflowException)
+            {
+
+            }
+            
             var digitsIsSeven = (judgeText.Length == textLength);
             note.Text = (charCorrect &= digitsIsSeven) ? "" : "桁数が間違っています。";//注意文変更
             textBox.Text = "";//textBoxクリア

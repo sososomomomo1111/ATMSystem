@@ -168,7 +168,7 @@ namespace ATMSystem
 
         void requestAmount()//取引金額入力
         {
-            InputAmountPage inputAmountPage = new InputAmountPage("取引金額",,functionName);
+            InputAmountPage inputAmountPage = new InputAmountPage("取引金額","取引金額を入力してください",functionName);
             Application.Run(inputAmountPage);
         }
 

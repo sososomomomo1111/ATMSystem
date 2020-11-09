@@ -52,6 +52,11 @@ namespace ATMSystem
             catch (FormatException)
             {
                 note.Text = string.Format("数字を入力してください。");
+                textBox.Text = "";//textBoxクリア
+            }
+            catch (OverflowException)
+            {
+
             }
 
             switch (functionName)
@@ -69,8 +74,8 @@ namespace ATMSystem
             }
 
             //confirmButton.Enabled = digits;//7桁でボタンを押せるように
-          //  note.Text = (confirmButton.Enabled = digits) ? "" : "桁数が間違っています。";
-
+            //  note.Text = (confirmButton.Enabled = digits) ? "" : "桁数が間違っています。";
+            textBox.Text = "";//textBoxクリア
             base.confirmButton_Click(sender, e);
         }
 
