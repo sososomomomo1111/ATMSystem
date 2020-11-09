@@ -78,6 +78,7 @@
     <Compile Include="InputPWPage.Designer.cs">
       <DependentUpon>InputPWPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Log.cs" />
     <Compile Include="OwnerFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

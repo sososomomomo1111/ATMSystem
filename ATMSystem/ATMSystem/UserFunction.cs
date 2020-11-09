@@ -97,23 +97,7 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-            //switch (functionList[fcNum])
-            //{
-            //    case FC.cancel:
-            //        break;
-            //    case FC.requestUserID:
-            //        requestUserID();
-            //        break;
-            //    case FC.requestAmount:
-            //        requestAmount();
-            //        break;
-
-            //    default:
-            //        break;
-            //}
             fcNum++;
-
-            // GlobalVariables.judgeEnd();
 
         }
         bool isNextExist() { return functionList.Count != fcNum; } //falseで次が無い
@@ -137,16 +121,20 @@ namespace ATMSystem
             Account account;
             try
             {
-                account = new Account(1234567);
+                account = new Account(id);
                 userAccount = account;
             }
-            catch (FileNotFoundException)
+            catch (Exception exception)
             {
-                canceled = true;
-                fcNum = 0;
-                MessageBox.Show("IDが存在しません。機能選択画面に戻ります。");
-
+                if (exception is FileNotFoundException || exception is DirectoryNotFoundException)
+                {
+                    canceled = true;
+                    fcNum = 0;
+                    MessageBox.Show("IDが存在しません。機能選択画面に戻ります。");
+                    //throw;
+                }
             }
+
 
         }
 
