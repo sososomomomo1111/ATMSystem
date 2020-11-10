@@ -36,8 +36,7 @@ namespace ATMSystem
                 { "fund",3 },
                 { "confirmRest",4 },
                 { "register",5 },
-                { "confirmBillCount",6 },
-                { "controlBillCount",7 },
+                { "ownerFunction",6 },
                 {"canceled",0 }
 
             };
