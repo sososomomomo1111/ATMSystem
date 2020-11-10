@@ -25,7 +25,6 @@ namespace ATMSystem
     class UserFunction
     {
         public List<FC> functionList;//enumの配列
-        public int fcNum;//functionNumber 
         delegate void FunctionPart();//関数の変数のようなもの
         IDictionary<FC, FunctionPart> functionDic;//map型
 
@@ -92,7 +91,6 @@ namespace ATMSystem
             if (canceled)
             {
                 functionList[0] = FC.cancel;
-                fcNum = 0;
             }
             return canceled;
         }
@@ -104,8 +102,6 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-            fcNum++;
-
         }
 
 
@@ -134,7 +130,6 @@ namespace ATMSystem
                 if (exception is FileNotFoundException || exception is DirectoryNotFoundException)
                 {
                     canceled = true;
-                    fcNum = 0;
                     MessageBox.Show("IDが存在しません。機能選択画面に戻ります。");
                     //throw;
                 }
@@ -170,7 +165,6 @@ namespace ATMSystem
             if(userAccount.PW != pw)
             {
                 canceled = true;
-                fcNum = 0;
                 MessageBox.Show("パスワードが一致しません。機能選択画面に戻ります。");
             }
 

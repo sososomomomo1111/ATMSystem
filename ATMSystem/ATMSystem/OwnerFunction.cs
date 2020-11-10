@@ -21,7 +21,6 @@ namespace ATMSystem
     {
 
         public List<oFC> functionList;
-        public int fcNum;//functionNumber 
         delegate void FunctionPart();
         IDictionary<oFC, FunctionPart> functionDic;
 
@@ -74,7 +73,6 @@ namespace ATMSystem
             if (canceled)
             {
                 functionList[0] = oFC.cancel;
-                fcNum = 0;
             }
             return canceled;
         }
@@ -86,7 +84,6 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-            fcNum++;
 
 
         }
