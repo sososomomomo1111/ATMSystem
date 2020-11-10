@@ -18,18 +18,16 @@ namespace ATMSystem
         requestPayeeID,
 
 
-        //オーナー機能
-        selectOwnerFunction,
-        requestOwnerID,
+       
 
     }
 
     class UserFunction
     {
-        public List<FC> functionList;
+        public List<FC> functionList;//enumの配列
         public int fcNum;//functionNumber 
-        delegate void FunctionPart();
-        IDictionary<FC, FunctionPart> functionDic;
+        delegate void FunctionPart();//関数の変数のようなもの
+        IDictionary<FC, FunctionPart> functionDic;//map型
 
 
         string functionName;
@@ -89,7 +87,7 @@ namespace ATMSystem
             }
         }
 
-        public bool isCanceled()
+        public bool isCanceled()//キャンセルされた場合何もせず機能選択画面に戻る
         {
             if (canceled)
             {
@@ -109,11 +107,9 @@ namespace ATMSystem
             fcNum++;
 
         }
-        bool isNextExist() { return functionList.Count != fcNum; } //falseで次が無い
 
 
-
-
+        //以下部分機能
 
         void requestUserID()//ユーザーID入力
         {

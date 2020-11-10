@@ -12,6 +12,8 @@ namespace ATMSystem
 {
     public partial class SelectOwnerFunctionPage : Form
     {
+        public string functionName { get; set; }
+
         public SelectOwnerFunctionPage()
         {
             InitializeComponent();

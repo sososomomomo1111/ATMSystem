@@ -3,65 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ATMSystem
 {
+    public enum oFC
+    {
+        //オーナー機能
+        cancel,
+        selectOwnerFunction,
+        requestOwnerID,
+        confirmBillCount,
+        controlBillCount,
+    }
+
     class OwnerFunction
     {
 
-        public List<FC> functionList;
+        public List<oFC> functionList;
         public int fcNum;//functionNumber 
         delegate void FunctionPart();
-        IDictionary<FC, FunctionPart> functionDic;
+        IDictionary<oFC, FunctionPart> functionDic;
 
 
         string functionName;
         public bool canceled { get; set; } = false;
         public int id { get; set; }
-        public int payeeId;
         public int amount { get; set; }
-        int pw;
-        Account userAccount, payeeAccount;
 
 
         public OwnerFunction(string str)
         {
+            //オーナー機能選択画面
+            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage();
+            Application.Run(selectOwnerFunctionPage);
+            var functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
+            selectOwnerFunctionPage = null;
+
+
 
 
             //fcNum = 1;
-            functionDic = new Dictionary<FC, FunctionPart>();
-            //functionDic.Add(FC.requestUserID, requestUserID);
-            //functionDic.Add(FC.requestUserPW, requestPW);
-            //functionDic.Add(FC.requestPayeeID, requestPayeeID);
-            //functionDic.Add(FC.requestAmount, requestAmount);
-            // functionDic.Add(FC.confirmID, confirmID);
-
-
+            functionDic = new Dictionary<oFC, FunctionPart>
+            {
+                { oFC.requestOwnerID, requestOwnerID },
+                { oFC.confirmBillCount, confirmBillCount },
+                { oFC.controlBillCount, controlBillCount }
+            };
 
             functionName = str;
             switch (str)
             {
 
-                case "deposit":
-                    //functionList.Add(FC.confirmID);
-                    functionList.Add(FC.requestAmount);
+                case "confirmBillCount":
+                    functionList.Add(oFC.confirmBillCount);
 
                     break;
-                case "withdraw":
-                    functionList.Add(FC.requestUserPW);
+                case "controlBillCount":
+                    functionList.Add(oFC.controlBillCount);
                     break;
-                case "fund":
-                    functionList.Add(FC.requestUserPW);
-                    functionList.Add(FC.requestPayeeID);
-                    functionList.Add(FC.requestAmount);
-                    break;
-                case "confirmRest":
-                    functionList.Add(FC.requestUserPW);
-                    break;
-                case "register":
-                    functionList.Add(FC.requestUserPW);
-                    break;
-
+               
                 default:
                     functionList = null;
                     break;
@@ -72,7 +73,7 @@ namespace ATMSystem
         {
             if (canceled)
             {
-                functionList[0] = FC.cancel;
+                functionList[0] = oFC.cancel;
                 fcNum = 0;
             }
             return canceled;
@@ -89,19 +90,21 @@ namespace ATMSystem
 
 
         }
-
-
-        void selectOwnerFunction()
-        {
-
-        }
         void requestOwnerID()
         {
             // InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
             //Application.Run(inputIDPage);
         }
 
+        void confirmBillCount()
+        {
 
+        }
+
+        void controlBillCount()
+        {
+
+        }
 
 
 
