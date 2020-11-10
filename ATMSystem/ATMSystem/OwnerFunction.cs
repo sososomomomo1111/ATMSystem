@@ -68,9 +68,6 @@ namespace ATMSystem
             }
         }
 
-
-
-
         public bool isCanceled()
         {
             if (canceled)
@@ -88,29 +85,25 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-            //switch (functionList[fcNum])
-            //{
-            //    case FC.cancel:
-            //        break;
-            //    case FC.requestUserID:
-            //        requestUserID();
-            //        break;
-            //    case FC.requestAmount:
-            //        requestAmount();
-            //        break;
-
-            //    default:
-            //        break;
-            //}
             fcNum++;
 
-            // GlobalVariables.judgeEnd();
 
         }
 
-        private void InputOwnerID()
+
+        void selectOwnerFunction()
         {
-            //InputOwnerIDPage inputIDPage = new InputIDPage();
+
         }
+        void requestOwnerID()
+        {
+            // InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
+            //Application.Run(inputIDPage);
+        }
+
+
+
+
+
     }
 }

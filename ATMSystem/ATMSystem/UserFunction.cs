@@ -10,11 +10,17 @@ namespace ATMSystem
 {
     public enum FC//FunctionCommand
     {
+        //ユーザー機能
         cancel,
         requestUserID,
         requestUserPW,
         requestAmount,
         requestPayeeID,
+
+
+        //オーナー機能
+        selectOwnerFunction,
+        requestOwnerID,
 
     }
 
@@ -41,11 +47,13 @@ namespace ATMSystem
             functionList.Add(FC.requestUserID);//ユーザーIDは必須なので無条件で追加
             canceled = false;
             //fcNum = 1;
-            functionDic = new Dictionary<FC, FunctionPart>();
-            functionDic.Add(FC.requestUserID, requestUserID);
-            functionDic.Add(FC.requestUserPW, requestPW);
-            functionDic.Add(FC.requestPayeeID, requestPayeeID);
-            functionDic.Add(FC.requestAmount, requestAmount);
+            functionDic = new Dictionary<FC, FunctionPart>
+            {
+                { FC.requestUserID, requestUserID },
+                { FC.requestUserPW, requestPW },
+                { FC.requestPayeeID, requestPayeeID },
+                { FC.requestAmount, requestAmount }
+            };
             // functionDic.Add(FC.confirmID, confirmID);
 
 
@@ -55,7 +63,6 @@ namespace ATMSystem
             {
 
                 case "deposit":
-                    //functionList.Add(FC.confirmID);
                     functionList.Add(FC.requestAmount);
 
                     break;
@@ -111,7 +118,7 @@ namespace ATMSystem
         void requestUserID()//ユーザーID入力
         {
             ////ユーザーID
-            InputIDPage inputIDPage = new InputIDPage("ID","IDを入力してください");
+            InputIDPage inputIDPage = new InputIDPage("ID", "IDを入力してください");
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) id = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
@@ -143,7 +150,7 @@ namespace ATMSystem
         void requestPayeeID()//振込先ID入力
         {
 
-            InputIDPage inputIDPage = new InputIDPage("振込先ID","振込先IDを入力してください");
+            InputIDPage inputIDPage = new InputIDPage("振込先ID", "振込先IDを入力してください");
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) payeeId = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
@@ -155,25 +162,33 @@ namespace ATMSystem
 
         void requestPW()//PW入力
         {
-            InputPWPage inputPWPage = new InputPWPage("パスワード","パスワードを入力してください");
+            InputPWPage inputPWPage = new InputPWPage("パスワード", "パスワードを入力してください");
             Application.Run(inputPWPage);
-
+            if (inputPWPage.charCorrect) pw = inputPWPage.pw;
+            if (!(canceled = inputPWPage.isCanceled))
+                checkPW(pw);//ID確認もID要求の中で行う
         }
 
-        void checkPW()
+        void checkPW(int PW)
         {
+            if(userAccount.PW != pw)
+            {
+                canceled = true;
+                fcNum = 0;
+                MessageBox.Show("パスワードが一致しません。機能選択画面に戻ります。");
+            }
 
         }
 
 
         void requestAmount()//取引金額入力
         {
-            InputAmountPage inputAmountPage = new InputAmountPage("取引金額","取引金額を入力してください",functionName);
+            InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);
             Application.Run(inputAmountPage);
         }
 
 
-        
+
     }
 
 

@@ -10,26 +10,24 @@ using System.Windows.Forms;
 
 namespace ATMSystem
 {
-    public partial class InputPWPage : InputPage
+    public partial class InputOwnerIDPage :InputPage
     {
 
-        public int pw { get; set; }
-
         const int TEXTLENGTH = 4;
+        int ownerId=0;
 
-
-        public InputPWPage(string str,string exp) : base(str,exp)
+        public InputOwnerIDPage(string str, string exp) : base(str, exp)
         {
             InitializeComponent();
         }
 
         protected override void confirmButton_Click(object sender, EventArgs e)
         {
-
-            int pww = 0;
-            judgeInputText(ref pww, TEXTLENGTH);
-            pw = pww;
+            int idd = 0;
+            judgeInputText(ref idd, TEXTLENGTH);
+            ownerId = idd;
             base.confirmButton_Click(sender, e);
+
 
         }
     }

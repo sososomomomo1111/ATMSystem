@@ -66,6 +66,12 @@
     <Compile Include="InputIDPage.Designer.cs">
       <DependentUpon>InputIDPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputOwnerIDPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOwnerIDPage.Designer.cs">
+      <DependentUpon>InputOwnerIDPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputPage.cs">
       <SubType>Form</SubType>
     </Compile>
