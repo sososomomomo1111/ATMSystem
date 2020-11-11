@@ -114,6 +114,9 @@
       <DependentUpon>SelectOwnerFunctionPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UserFunction.cs" />
+    <EmbeddedResource Include="ConfirmBillPage.resx">
+      <DependentUpon>ConfirmBillPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputAmountPage.resx">
       <DependentUpon>InputAmountPage.cs</DependentUpon>
     </EmbeddedResource>
