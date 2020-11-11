@@ -24,6 +24,8 @@ namespace ATMSystem
         delegate void FunctionPart();
         IDictionary<oFC, FunctionPart> functionDic;
 
+        const int ownerId = 12345678;
+
 
         string functionName;
         public bool canceled { get; set; } = false;
@@ -39,10 +41,6 @@ namespace ATMSystem
             var functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
             selectOwnerFunctionPage = null;
 
-
-
-
-            //fcNum = 1;
             functionDic = new Dictionary<oFC, FunctionPart>
             {
                 { oFC.requestOwnerID, requestOwnerID },
@@ -84,18 +82,21 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-
-
         }
+
         void requestOwnerID()
         {
-            // InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
-            //Application.Run(inputIDPage);
+            InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
+            Application.Run(inputOwnerIDPage);
+            //if (inputOwnerIDPage.charCorrect) ownerId = inputOwnerIDPage.ownerId;
+            //if (!(canceled = inputPWPage.isCanceled))
+            //    checkPW(pw);//ID確認もID要求の中で行う
         }
 
         void confirmBillCount()
         {
-
+            ConfirmBillPage confirmBillPage = new ConfirmBillPage();
+            Application.Run(confirmBillPage);
         }
 
         void controlBillCount()

@@ -176,6 +176,7 @@ namespace ATMSystem
             if (functionName == "deposit")
             {
                InputDepositAmountPage inputDepositAmountPage = new InputDepositAmountPage();
+                Application.Run(inputDepositAmountPage);
             }
             else{
                 InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);

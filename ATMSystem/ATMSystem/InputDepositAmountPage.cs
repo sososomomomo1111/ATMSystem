@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ATMSystem
 {
-    public partial class 預入金額入力画面 : Form
+    public partial class InputDepositAmountPage : Form
     {
-        public 預入金額入力画面()
+        public InputDepositAmountPage()
         {
             InitializeComponent();
         }
