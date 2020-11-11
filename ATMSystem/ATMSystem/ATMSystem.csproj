@@ -55,6 +55,12 @@
     <Compile Include="ConfirmPage.Designer.cs">
       <DependentUpon>ConfirmPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmBillPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmBillPage.Designer.cs">
+      <DependentUpon>ConfirmBillPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputAmountPage.cs">
       <SubType>Form</SubType>
     </Compile>
