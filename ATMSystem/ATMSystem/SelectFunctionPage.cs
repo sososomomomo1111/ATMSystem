@@ -25,7 +25,6 @@ namespace ATMSystem
 
         public void functionButton_Click(object sender, EventArgs e)
         {
-
             var button = (System.Windows.Forms.Button)sender;
             functionName = button.Name;
             this.Close();
