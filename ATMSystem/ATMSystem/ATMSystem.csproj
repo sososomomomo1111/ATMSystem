@@ -141,6 +141,9 @@
     <EmbeddedResource Include="SelectFunctionPage.resx">
       <DependentUpon>SelectFunctionPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectOwnerFunctionPage.resx">
+      <DependentUpon>SelectOwnerFunctionPage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
