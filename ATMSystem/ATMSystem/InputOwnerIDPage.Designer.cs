@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.SuspendLayout();
+            // 
+            // InputOwnerIDPage
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "InputOwnerIDPage";
             this.Text = "InputOwnerIDPage";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

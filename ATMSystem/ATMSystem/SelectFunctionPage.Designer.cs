@@ -115,8 +115,7 @@
             // 
             // SelectFunctionPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ownerFunction);
             this.Controls.Add(this.register);
@@ -125,6 +124,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.withdraw);
             this.Controls.Add(this.deposit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SelectFunctionPage";
             this.Text = "機能選択画面";
             this.ResumeLayout(false);

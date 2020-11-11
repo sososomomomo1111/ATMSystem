@@ -126,6 +126,9 @@
     <EmbeddedResource Include="InputIDPage.resx">
       <DependentUpon>InputIDPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputOwnerIDPage.resx">
+      <DependentUpon>InputOwnerIDPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputPage.resx">
       <DependentUpon>InputPage.cs</DependentUpon>
     </EmbeddedResource>

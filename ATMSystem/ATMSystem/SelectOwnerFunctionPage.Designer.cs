@@ -81,13 +81,13 @@
             // 
             // SelectOwnerFunctionPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.controlBillCount);
             this.Controls.Add(this.confirmBillCount);
             this.Controls.Add(this.explain);
             this.Controls.Add(this.cancelButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SelectOwnerFunctionPage";
             this.Text = "オーナー機能選択画面";
             this.ResumeLayout(false);
