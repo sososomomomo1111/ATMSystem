@@ -18,6 +18,8 @@ namespace ATMSystem
         public bool charCorrect { get; set; }
 
         protected const int WAITTIME = 4;
+        bool digitsIsCorrect;
+
 
         public InputPage()
         {
@@ -45,8 +47,11 @@ namespace ATMSystem
 
         protected virtual void confirmButton_Click(object sender, EventArgs e)
         {
-            isCanceled = false;
-            this.Close();
+            if (digitsIsCorrect)
+            {
+                isCanceled = false;
+                this.Close();
+            }
         }
 
         protected void judgeInputText(ref int num, int textLength)
@@ -74,8 +79,9 @@ namespace ATMSystem
 
             }
             
-            var digitsIsSeven = (judgeText.Length == textLength);
-            note.Text = (charCorrect &= digitsIsSeven) ? "" : "桁数が間違っています。";//注意文変更
+             digitsIsCorrect = (judgeText.Length == textLength);
+            //note.Text = (charCorrect &=digitsIsCorrect) ? "" : "桁数が間違っています。";//注意文変更
+            note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
             textBox.Text = "";//textBoxクリア
         }
 
@@ -104,8 +110,9 @@ namespace ATMSystem
 
             }
 
-            var digitsIsSeven = (judgeText.Length == textLength);
-            note.Text = (charCorrect &= digitsIsSeven) ? "" : "桁数が間違っています。";//注意文変更
+            digitsIsCorrect = (judgeText.Length == textLength);
+            //note.Text = (charCorrect &=digitsIsCorrect) ? "" : "桁数が間違っています。";//注意文変更
+            note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
             textBox.Text = "";//textBoxクリア
         }
 

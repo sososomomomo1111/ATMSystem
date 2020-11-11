@@ -13,7 +13,7 @@ namespace ATMSystem
     public partial class InputOwnerIDPage : InputPage
     {
 
-        const int TEXTLENGTH = 4;
+        const int TEXTLENGTH = 12;
         public long ownerId { get; set; }
 
         public InputOwnerIDPage(string str, string exp) : base(str, exp)
