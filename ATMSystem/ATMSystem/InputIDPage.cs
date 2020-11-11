@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ATMSystem
 {
-    public partial class InputIDPage : InputPage
+    public partial class InputIDPage : ATMSystem.InputPage
     {
         public int id { get; set; }
         // public int id;
