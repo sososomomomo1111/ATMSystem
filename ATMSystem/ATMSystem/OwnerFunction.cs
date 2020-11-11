@@ -24,6 +24,9 @@ namespace ATMSystem
         delegate void FunctionPart();
         IDictionary<oFC, FunctionPart> functionDic;
 
+        // const string ownerId = "112233445566";//12桁
+        const long ownerId = 112233445566;//12桁
+
 
         string functionName;
         public bool canceled { get; set; } = false;
@@ -34,15 +37,11 @@ namespace ATMSystem
         public OwnerFunction(string str)
         {
             //オーナー機能選択画面
-            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage();
+            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage("何をしますか？");
             Application.Run(selectOwnerFunctionPage);
-            var functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
+            functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
             selectOwnerFunctionPage = null;
 
-
-
-
-            //fcNum = 1;
             functionDic = new Dictionary<oFC, FunctionPart>
             {
                 { oFC.requestOwnerID, requestOwnerID },
@@ -50,8 +49,10 @@ namespace ATMSystem
                 { oFC.controlBillCount, controlBillCount }
             };
 
-            functionName = str;
-            switch (str)
+            functionList = new List<oFC>();
+            functionList.Add(oFC.requestOwnerID);//ユーザーIDは必須なので無条件で追加
+            //functionName = str;
+            switch (functionName)
             {
 
                 case "confirmBillCount":
@@ -61,9 +62,10 @@ namespace ATMSystem
                 case "controlBillCount":
                     functionList.Add(oFC.controlBillCount);
                     break;
-               
+
                 default:
                     functionList = null;
+                    
                     break;
             }
         }
@@ -84,18 +86,21 @@ namespace ATMSystem
                 if (isCanceled()) break;
                 functionDic[i]();
             }
-
-
         }
+
         void requestOwnerID()
         {
-            // InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
-            //Application.Run(inputIDPage);
+            InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
+            Application.Run(inputOwnerIDPage);
+            canceled = !(inputOwnerIDPage.charCorrect && inputOwnerIDPage.ownerId == ownerId);
         }
+
+
 
         void confirmBillCount()
         {
-
+            ConfirmBillPage confirmBillPage = new ConfirmBillPage();
+            Application.Run(confirmBillPage);
         }
 
         void controlBillCount()

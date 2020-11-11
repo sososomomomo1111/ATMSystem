@@ -67,11 +67,11 @@
     <Compile Include="InputAmountPage.Designer.cs">
       <DependentUpon>InputAmountPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputDepositAountPage.cs">
+    <Compile Include="InputDepositAmountPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputDepositAountPage.Designer.cs">
-      <DependentUpon>InputDepositAountPage.cs</DependentUpon>
+    <Compile Include="InputDepositAmountPage.Designer.cs">
+      <DependentUpon>InputDepositAmountPage.cs</DependentUpon>
     </Compile>
     <Compile Include="InputIDPage.cs">
       <SubType>Form</SubType>
@@ -120,6 +120,9 @@
     <EmbeddedResource Include="InputAmountPage.resx">
       <DependentUpon>InputAmountPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputDepositAmountPage.resx">
+      <DependentUpon>InputDepositAmountPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputIDPage.resx">
       <DependentUpon>InputIDPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +143,9 @@
     </Compile>
     <EmbeddedResource Include="SelectFunctionPage.resx">
       <DependentUpon>SelectFunctionPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectOwnerFunctionPage.resx">
+      <DependentUpon>SelectOwnerFunctionPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

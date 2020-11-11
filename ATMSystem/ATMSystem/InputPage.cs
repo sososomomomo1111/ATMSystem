@@ -18,6 +18,8 @@ namespace ATMSystem
         public bool charCorrect { get; set; }
 
         protected const int WAITTIME = 4;
+        bool digitsIsCorrect;
+
 
         public InputPage()
         {
@@ -45,8 +47,11 @@ namespace ATMSystem
 
         protected virtual void confirmButton_Click(object sender, EventArgs e)
         {
-            isCanceled = false;
-            this.Close();
+            if (digitsIsCorrect)
+            {
+                isCanceled = false;
+                this.Close();
+            }
         }
 
         protected void judgeInputText(ref int num, int textLength)
@@ -74,11 +79,47 @@ namespace ATMSystem
 
             }
             
-            var digitsIsSeven = (judgeText.Length == textLength);
-            note.Text = (charCorrect &= digitsIsSeven) ? "" : "桁数が間違っています。";//注意文変更
+             digitsIsCorrect = (judgeText.Length == textLength);
+            //note.Text = (charCorrect &=digitsIsCorrect) ? "" : "桁数が間違っています。";//注意文変更
+            note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
+            textBox.Text = "";//textBoxクリア
+        }
+
+        protected void judgeInputText(ref long num, int textLength)//オーナー機能用
+        {
+            charCorrect = true;
+            var judgeText = textBox.Text.ToString();
+
+            try
+            {
+                num = long.Parse(judgeText);
+            }
+            catch (FormatException)
+            {
+                charCorrect = false;
+                for (int i = 0; i < WAITTIME; i++)
+                {
+                    note.Text = string.Format("数字以外の文字が入力されました。\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                    var t = Task.Delay(1000);
+                    t.Wait();
+                }
+                this.Close();
+            }
+            catch (OverflowException)
+            {
+
+            }
+
+            digitsIsCorrect = (judgeText.Length == textLength);
+            //note.Text = (charCorrect &=digitsIsCorrect) ? "" : "桁数が間違っています。";//注意文変更
+            note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
             textBox.Text = "";//textBoxクリア
         }
 
 
     }
+
 }
+
+
+
