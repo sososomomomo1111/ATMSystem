@@ -16,6 +16,5 @@ namespace ATMSystem
         {
             InitializeComponent();
         }
-
     }
 }
