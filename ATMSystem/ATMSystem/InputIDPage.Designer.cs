@@ -43,10 +43,9 @@
             // 
             // InputIDPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1333, 675);
-            this.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "InputIDPage";
             this.Text = "ID入力画面";
             this.ResumeLayout(false);
