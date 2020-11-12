@@ -17,5 +17,9 @@ namespace ATMSystem
             InitializeComponent();
         }
 
+        private void ConfirmBillPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

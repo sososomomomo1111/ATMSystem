@@ -43,18 +43,23 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 24F);
             this.label1.Location = new System.Drawing.Point(184, 174);
             this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1413, 140);
+            this.label1.Size = new System.Drawing.Size(400, 64);
             this.label1.TabIndex = 0;
             this.label1.Text = "各紙幣の枚数";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 36F);
             this.textBox1.Location = new System.Drawing.Point(109, 392);
@@ -168,7 +173,8 @@
             // 
             // ConfirmBillPage
             // 
-            this.ClientSize = new System.Drawing.Size(1733, 900);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -183,6 +189,7 @@
             this.Margin = new System.Windows.Forms.Padding(15, 12, 15, 12);
             this.Name = "ConfirmBillPage";
             this.Text = "紙幣枚数確認画面";
+            this.Load += new System.EventHandler(this.ConfirmBillPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
