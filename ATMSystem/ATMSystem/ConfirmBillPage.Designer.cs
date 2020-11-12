@@ -189,7 +189,6 @@
             this.Margin = new System.Windows.Forms.Padding(15, 12, 15, 12);
             this.Name = "ConfirmBillPage";
             this.Text = "紙幣枚数確認画面";
-            this.Load += new System.EventHandler(this.ConfirmBillPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
