@@ -33,13 +33,20 @@
             // 
             // textBox
             // 
+            this.textBox.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            // 
+            // note
+            // 
+            this.note.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.note.Size = new System.Drawing.Size(625, 237);
             // 
             // InputIDPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1333, 675);
+            this.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.Name = "InputIDPage";
             this.Text = "ID入力画面";
             this.ResumeLayout(false);
