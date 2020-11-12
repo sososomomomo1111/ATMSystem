@@ -38,13 +38,12 @@
             // 
             // note
             // 
-            this.note.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.note.Size = new System.Drawing.Size(625, 237);
+           // this.note.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            //this.note.Size = new System.Drawing.Size(263, 93);
             // 
             // InputIDPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "InputIDPage";
             this.Text = "ID入力画面";
