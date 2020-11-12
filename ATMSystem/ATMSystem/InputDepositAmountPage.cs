@@ -16,5 +16,10 @@ namespace ATMSystem
         {
             InitializeComponent();
         }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
