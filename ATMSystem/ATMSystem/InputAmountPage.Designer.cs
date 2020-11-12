@@ -31,20 +31,10 @@
         {
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(282, 276);
-            this.label1.Size = new System.Drawing.Size(329, 146);
-            // 
-            // explain
-            // 
-            this.explain.Location = new System.Drawing.Point(410, 123);
-            this.explain.Size = new System.Drawing.Size(748, 109);
-            // 
             // InputAmountPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1353, 680);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "InputAmountPage";
             this.Text = "金額入力画面";
             this.ResumeLayout(false);
