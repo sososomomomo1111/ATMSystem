@@ -24,7 +24,8 @@ namespace ATMSystem
         delegate void FunctionPart();
         IDictionary<oFC, FunctionPart> functionDic;
 
-        const int ownerId = 12345678;
+        // const string ownerId = "112233445566";//12桁
+        const long ownerId = 112233445566;//12桁
 
 
         string functionName;
@@ -36,9 +37,9 @@ namespace ATMSystem
         public OwnerFunction(string str)
         {
             //オーナー機能選択画面
-            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage();
+            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage("何をしますか？");
             Application.Run(selectOwnerFunctionPage);
-            var functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
+            functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
             selectOwnerFunctionPage = null;
 
             functionDic = new Dictionary<oFC, FunctionPart>
@@ -48,8 +49,10 @@ namespace ATMSystem
                 { oFC.controlBillCount, controlBillCount }
             };
 
-            functionName = str;
-            switch (str)
+            functionList = new List<oFC>();
+            functionList.Add(oFC.requestOwnerID);//ユーザーIDは必須なので無条件で追加
+            //functionName = str;
+            switch (functionName)
             {
 
                 case "confirmBillCount":
@@ -59,9 +62,10 @@ namespace ATMSystem
                 case "controlBillCount":
                     functionList.Add(oFC.controlBillCount);
                     break;
-               
+
                 default:
                     functionList = null;
+                    
                     break;
             }
         }
@@ -88,10 +92,10 @@ namespace ATMSystem
         {
             InputOwnerIDPage inputOwnerIDPage = new InputOwnerIDPage("オーナーID", "オーナーIDを入力してください");
             Application.Run(inputOwnerIDPage);
-            //if (inputOwnerIDPage.charCorrect) ownerId = inputOwnerIDPage.ownerId;
-            //if (!(canceled = inputPWPage.isCanceled))
-            //    checkPW(pw);//ID確認もID要求の中で行う
+            canceled = !(inputOwnerIDPage.charCorrect && inputOwnerIDPage.ownerId == ownerId);
         }
+
+
 
         void confirmBillCount()
         {

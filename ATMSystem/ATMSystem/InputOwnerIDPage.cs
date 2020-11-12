@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ATMSystem
 {
-    public partial class InputOwnerIDPage :InputPage
+    public partial class InputOwnerIDPage : InputPage
     {
 
-        const int TEXTLENGTH = 4;
-        int ownerId=0;
+        const int TEXTLENGTH = 12;
+        public long ownerId { get; set; }
 
         public InputOwnerIDPage(string str, string exp) : base(str, exp)
         {
@@ -23,7 +23,7 @@ namespace ATMSystem
 
         protected override void confirmButton_Click(object sender, EventArgs e)
         {
-            int idd = 0;
+            long idd = 0;
             judgeInputText(ref idd, TEXTLENGTH);
             ownerId = idd;
             base.confirmButton_Click(sender, e);

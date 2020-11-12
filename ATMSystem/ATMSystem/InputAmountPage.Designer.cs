@@ -33,7 +33,7 @@
             // 
             // InputAmountPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "InputAmountPage";
             this.Text = "金額入力画面";
