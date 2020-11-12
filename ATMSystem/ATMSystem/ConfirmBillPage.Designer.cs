@@ -55,9 +55,11 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.Location = new System.Drawing.Point(30, 186);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(225, 71);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "千円札";
@@ -65,9 +67,11 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.White;
             this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox2.Location = new System.Drawing.Point(287, 186);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(225, 71);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "五千円札";
@@ -75,9 +79,11 @@
             // 
             // textBox3
             // 
+            this.textBox3.BackColor = System.Drawing.Color.White;
             this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox3.Location = new System.Drawing.Point(543, 186);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(225, 71);
             this.textBox3.TabIndex = 1;
             this.textBox3.Text = "一万円札";
