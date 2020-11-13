@@ -60,7 +60,7 @@
             this.textBox1.Location = new System.Drawing.Point(30, 186);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(225, 71);
+            this.textBox1.Size = new System.Drawing.Size(225, 39);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "千円札";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -72,7 +72,7 @@
             this.textBox2.Location = new System.Drawing.Point(287, 186);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(225, 71);
+            this.textBox2.Size = new System.Drawing.Size(225, 39);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "五千円札";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -84,7 +84,7 @@
             this.textBox3.Location = new System.Drawing.Point(543, 186);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(225, 71);
+            this.textBox3.Size = new System.Drawing.Size(225, 39);
             this.textBox3.TabIndex = 1;
             this.textBox3.Text = "一万円札";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -128,6 +128,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "完了";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // label5
             // 

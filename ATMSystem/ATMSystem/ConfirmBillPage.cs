@@ -12,10 +12,16 @@ namespace ATMSystem
 {
     public partial class ConfirmBillPage : Form
     {
+        Bill bill;
+
         public ConfirmBillPage()
         {
             InitializeComponent();
         }
-
+        
+        protected virtual void confirmButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

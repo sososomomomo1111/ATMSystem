@@ -117,6 +117,9 @@
     <EmbeddedResource Include="ConfirmBillPage.resx">
       <DependentUpon>ConfirmBillPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmPage.resx">
+      <DependentUpon>ConfirmPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputAmountPage.resx">
       <DependentUpon>InputAmountPage.cs</DependentUpon>
     </EmbeddedResource>
