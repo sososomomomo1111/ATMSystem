@@ -26,7 +26,7 @@ namespace ATMSystem
 
         // const string ownerId = "112233445566";//12桁
         const long ownerId = 112233445566;//12桁
-
+        Bill bill1k, bill5k, bill10k;
 
         string functionName;
         public bool canceled { get; set; } = false;
