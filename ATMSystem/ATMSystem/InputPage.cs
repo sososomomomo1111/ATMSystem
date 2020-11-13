@@ -61,24 +61,41 @@ namespace ATMSystem
 
             try
             {
-                num = int.Parse(judgeText);
+                   num = int.Parse(judgeText);
             }
-            catch (FormatException)
+            catch(Exception exception)
             {
-                charCorrect = false;
-                for (int i = 0; i < WAITTIME; i++)
+                charCorrect = false; 
+                if (exception is ArgumentNullException)
                 {
-                    note.Text = string.Format("数字以外の文字が入力されました。\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
-                    var t = Task.Delay(1000);
-                    t.Wait();
+                    for (int i = 0; i < WAITTIME; i++)
+                    {
+                        note.Text = string.Format("何も入力されませんでした。\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                        var t = Task.Delay(1000);
+                        t.Wait();
+                    }
+                    this.Close();
                 }
-                this.Close();
-            }
-            catch (OverflowException)
-            {
+                if (exception is FormatException)
+                {
+                    for (int i = 0; i < WAITTIME; i++)
+                    {
+                        string noteStr = "数字以外の文字が入力されました。";
+                        if (judgeText == "") noteStr = "入力されませんでした。";
 
+                        note.Text = string.Format(noteStr+"\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                        var t = Task.Delay(1000);
+                        t.Wait();
+                    }
+                    this.Close();
+                }
+                if(exception is OverflowException)
+                {
+                    ;
+                }
+              
             }
-            
+                   
              digitsIsCorrect = (judgeText.Length == textLength);
             //note.Text = (charCorrect &=digitsIsCorrect) ? "" : "桁数が間違っています。";//注意文変更
             note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
@@ -94,19 +111,36 @@ namespace ATMSystem
             {
                 num = long.Parse(judgeText);
             }
-            catch (FormatException)
+            catch (Exception exception)
             {
                 charCorrect = false;
-                for (int i = 0; i < WAITTIME; i++)
+                if (exception is ArgumentNullException)
                 {
-                    note.Text = string.Format("数字以外の文字が入力されました。\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
-                    var t = Task.Delay(1000);
-                    t.Wait();
+                    for (int i = 0; i < WAITTIME; i++)
+                    {
+                        note.Text = string.Format("何も入力されませんでした。\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                        var t = Task.Delay(1000);
+                        t.Wait();
+                    }
+                    this.Close();
                 }
-                this.Close();
-            }
-            catch (OverflowException)
-            {
+                if (exception is FormatException)
+                {
+                    for (int i = 0; i < WAITTIME; i++)
+                    {
+                        string noteStr = "数字以外の文字が入力されました。";
+                        if (judgeText == "") noteStr = "入力されませんでした。";
+
+                        note.Text = string.Format(noteStr + "\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                        var t = Task.Delay(1000);
+                        t.Wait();
+                    }
+                    this.Close();
+                }
+                if (exception is OverflowException)
+                {
+                    ;
+                }
 
             }
 

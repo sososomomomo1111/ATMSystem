@@ -36,51 +36,39 @@ namespace ATMSystem
 
         public OwnerFunction(string str)
         {
-            //オーナー機能選択画面
-            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage("何をしますか？");
-            Application.Run(selectOwnerFunctionPage);
-            functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
-            selectOwnerFunctionPage = null;
+
 
             functionDic = new Dictionary<oFC, FunctionPart>
             {
                 { oFC.requestOwnerID, requestOwnerID },
+                { oFC.selectOwnerFunction,selectOwnerFunction },
                 { oFC.confirmBillCount, confirmBillCount },
                 { oFC.controlBillCount, controlBillCount }
             };
 
             functionList = new List<oFC>();
-            functionList.Add(oFC.requestOwnerID);//ユーザーIDは必須なので無条件で追加
-            //functionName = str;
-            switch (functionName)
-            {
-
-                case "confirmBillCount":
-                    functionList.Add(oFC.confirmBillCount);
-
-                    break;
-                case "controlBillCount":
-                    functionList.Add(oFC.controlBillCount);
-                    break;
-
-                default:
-                    functionList = null;
-                    
-                    break;
-            }
         }
 
         public bool isCanceled()
         {
             if (canceled)
             {
-                functionList[0] = oFC.cancel;
+                try
+                {
+                    functionList[0] = oFC.cancel;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    ;
+                }
             }
             return canceled;
         }
 
         public void execute()
         {
+            requestOwnerID();
+            if (!isCanceled()) selectOwnerFunction();
             foreach (var i in functionList)
             {
                 if (isCanceled()) break;
@@ -95,7 +83,31 @@ namespace ATMSystem
             canceled = !(inputOwnerIDPage.charCorrect && inputOwnerIDPage.ownerId == ownerId);
         }
 
+        void selectOwnerFunction()
+        {
+            //オーナー機能選択画面
+            SelectOwnerFunctionPage selectOwnerFunctionPage = new SelectOwnerFunctionPage("何をしますか？");
+            Application.Run(selectOwnerFunctionPage);
+            functionName = selectOwnerFunctionPage.functionName;//何が選択されたか
+            selectOwnerFunctionPage = null;
 
+            switch (functionName)
+            {
+
+                case "confirmBillCount":
+                    functionList.Add(oFC.confirmBillCount);
+
+                    break;
+                case "controlBillCount":
+                    functionList.Add(oFC.controlBillCount);
+                    break;
+
+                default:
+                    functionList = null;
+
+                    break;
+            }
+        }
 
         void confirmBillCount()
         {
