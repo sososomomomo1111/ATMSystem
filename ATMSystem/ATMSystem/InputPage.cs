@@ -13,7 +13,7 @@ namespace ATMSystem
 {
     public partial class InputPage : Form
     {
-        public bool isCanceled = true;
+        public bool isCanceled { get; set; } = true;
 
         public bool charCorrect { get; set; }
 

@@ -11,11 +11,11 @@ namespace ATMSystem
     {
         public int amount { get; set; }
         public int count { get; set; }
-        const int maxCount = 500;
+        const int MAXCOUNT = 1000;
 
         public Bill()
         {
-            count = maxCount;
+            count = MAXCOUNT/2;
         }
 
         public Bill(string am)
@@ -72,7 +72,7 @@ namespace ATMSystem
         }
 
         //枚数で更新
-        void updateBill(int newCount)
+        void updateBill(int newCount)//更新してファイルに書き込み
         {
             Encoding sjis = Encoding.GetEncoding("Shift_JIS");
             StreamReader sr = null;
@@ -114,6 +114,12 @@ namespace ATMSystem
                 sw.Close();
             }
         }
+
+        public bool checkOver(int addCount)//オーバーしたらtrue
+        {
+            return count + addCount > MAXCOUNT;
+        }
+
     }
 
 }

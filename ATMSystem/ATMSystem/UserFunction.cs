@@ -120,16 +120,16 @@ namespace ATMSystem
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) id = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
-                confirmID(id);//ID確認もID要求の中で行う
+                confirmID(id,ref userAccount);//ID確認もID要求の中で行う
         }
 
-        void confirmID(int idd)//IDが存在しているか確認
+        void confirmID(int idd,ref Account ac)//IDが存在しているか確認
         {
             Account account;
             try
             {
                 account = new Account(idd);
-                userAccount = account;
+                ac = account;
             }
             catch (Exception exception)
             {
@@ -151,7 +151,7 @@ namespace ATMSystem
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) payeeId = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
-                confirmID(payeeId);//ID確認もID要求の中で行う
+                confirmID(payeeId,ref payeeAccount);//ID確認もID要求の中で行う
         }
 
 
@@ -179,17 +179,45 @@ namespace ATMSystem
 
         void requestAmount()//取引金額入力
         {
-            if (functionName == "deposit")
+            if (functionName == "deposit")//預入
             {
                 InputDepositAmountPage inputDepositAmountPage = new InputDepositAmountPage();
                 Application.Run(inputDepositAmountPage);
+                var one = inputDepositAmountPage.onebills;
+                var five = inputDepositAmountPage.fivebills;
+                var ten=inputDepositAmountPage.tenbills;
+                amount = one * bill1k.amount + five * bill5k.amount + ten * bill10k.amount;//枚数から金額計算
+
+                if(bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
+                {
+                    canceled = true;
+                    MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
+                }
+                else
+                {
+                    bill1k.calculateCount(amount);
+                    bill5k.calculateCount(amount);
+                    bill10k.calculateCount(amount);
+                }
             }
-            else
+            else//引出、振込
             {
                 InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);
                 Application.Run(inputAmountPage);
+                
             }
         }
+
+
+        void checkAmount()//引出、振込時のみ金額が足りるか確認
+        {
+            if (userAccount.rest < amount)
+            {
+                canceled = true;
+                MessageBox.Show("口座の残高が足りません。機能選択画面に戻ります。");
+            }
+        }
+
 
         void outputPayee()
         {
@@ -206,6 +234,11 @@ namespace ATMSystem
         void outputLog()
         {
             //ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id);
+        }
+
+        void updateAccount()
+        {
+
         }
 
     }
