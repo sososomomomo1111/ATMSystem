@@ -17,13 +17,17 @@ namespace ATMSystem
         requestAmount,
         requestPayeeID,
 
-
+        outputPayee,
+        outputTransaction,
 
 
     }
 
+
     class UserFunction
     {
+
+        const int FEE = 220;
         public List<FC> functionList;//enumの配列
         delegate void FunctionPart();//関数の変数のようなもの
         IDictionary<FC, FunctionPart> functionDic;//map型
@@ -49,7 +53,10 @@ namespace ATMSystem
                 { FC.requestUserID, requestUserID },
                 { FC.requestUserPW, requestPW },
                 { FC.requestPayeeID, requestPayeeID },
-                { FC.requestAmount, requestAmount }
+                { FC.requestAmount, requestAmount },
+                {FC.outputPayee,outputPayee },
+                {FC.outputTransaction,outputTransaction }
+
             };
             // functionDic.Add(FC.confirmID, confirmID);
 
@@ -67,20 +74,23 @@ namespace ATMSystem
 
                 case "deposit":
                     functionList.Add(FC.requestAmount);
-
+                    functionList.Add(FC.outputTransaction);
                     break;
                 case "withdraw":
                     functionList.Add(FC.requestUserPW);
                     functionList.Add(FC.requestAmount);
-
+                    functionList.Add(FC.outputTransaction);
                     break;
                 case "fund":
                     functionList.Add(FC.requestUserPW);
                     functionList.Add(FC.requestPayeeID);
                     functionList.Add(FC.requestAmount);
+                    functionList.Add(FC.outputPayee);
+                    functionList.Add(FC.outputTransaction);
                     break;
                 case "confirmRest":
                     functionList.Add(FC.requestUserPW);
+                    functionList.Add(FC.outputTransaction);
                     break;
                 case "register":
                     functionList.Add(FC.requestUserPW);
@@ -120,10 +130,10 @@ namespace ATMSystem
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) id = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
-                confirmID(id,ref userAccount);//ID確認もID要求の中で行う
+                confirmID(id, ref userAccount);//ID確認もID要求の中で行う
         }
 
-        void confirmID(int idd,ref Account ac)//IDが存在しているか確認
+        void confirmID(int idd, ref Account ac)//IDが存在しているか確認
         {
             Account account;
             try
@@ -151,7 +161,7 @@ namespace ATMSystem
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) payeeId = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
-                confirmID(payeeId,ref payeeAccount);//ID確認もID要求の中で行う
+                confirmID(payeeId, ref payeeAccount);//ID確認もID要求の中で行う
         }
 
 
@@ -185,10 +195,10 @@ namespace ATMSystem
                 Application.Run(inputDepositAmountPage);
                 var one = inputDepositAmountPage.onebills;
                 var five = inputDepositAmountPage.fivebills;
-                var ten=inputDepositAmountPage.tenbills;
+                var ten = inputDepositAmountPage.tenbills;
                 amount = one * bill1k.amount + five * bill5k.amount + ten * bill10k.amount;//枚数から金額計算
 
-                if(bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
+                if (bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
                 {
                     canceled = true;
                     MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
@@ -204,7 +214,8 @@ namespace ATMSystem
             {
                 InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);
                 Application.Run(inputAmountPage);
-                
+                //amount=InputAmountPage.amount;
+                checkAmount();
             }
         }
 
@@ -221,21 +232,40 @@ namespace ATMSystem
 
         void outputPayee()
         {
-
+            OutputPayeePage outputPayeePage = new OutputPayeePage(amount, payeeAccount.name);
+            Application.Run(outputPayeePage);
+            canceled = outputPayeePage.isCanceled;
         }
+
         void outputTransaction()
         {
+            switch (functionName)
+            {
+                case "deposit":
+                    ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage();
+                    Application.Run(confirmDepositPage);
+                    break;
+                case "withdraw":
+                    ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage();
+                    Application.Run(confirmWithdrawPage);
+                    break;
+                case "fund":
+                    ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
+                    Application.Run(confirmFundPage);
+                    break;
+                case "confirmRest":
+                    ConfirmRestPage confirmRestPage = new ConfirmRestPage();
+                    Application.Run(confirmRestPage);
+                    break;
+                case "register":
+                    //ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id);
+                    break;
 
+                default:
+                    functionList = null;
+                    break;
+            }
         }
-        void outputRest()
-        {
-
-        }
-        void outputLog()
-        {
-            //ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id);
-        }
-
         void updateAccount()
         {
 

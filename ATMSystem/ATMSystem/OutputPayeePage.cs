@@ -12,9 +12,17 @@ namespace ATMSystem
 {
     public partial class OutputPayeePage : Form
     {
+        public bool isCanceled { set; get; } = false;
+
         public OutputPayeePage()
         {
             InitializeComponent();
+        }
+
+        internal OutputPayeePage(int amount,string payeeName) : this()
+        {
+            label4.Text = amount.ToString();
+            label5.Text = payeeName;
         }
 
         private void OutputPayeePage_Load(object sender, EventArgs e)
@@ -30,6 +38,16 @@ namespace ATMSystem
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cancel_button_Click(object sender, EventArgs e)
+        {
+            isCanceled = true;
         }
     }
 }

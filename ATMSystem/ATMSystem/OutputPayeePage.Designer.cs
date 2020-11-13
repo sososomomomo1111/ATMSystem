@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.confirmButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.cancel_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,18 +49,20 @@
             this.confirmButton.TabIndex = 9;
             this.confirmButton.Text = "確認";
             this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
-            // button1
+            // cancel_button
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(14, 366);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(5);
-            this.button1.Size = new System.Drawing.Size(150, 70);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "キャンセル";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cancel_button.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cancel_button.Location = new System.Drawing.Point(14, 366);
+            this.cancel_button.Margin = new System.Windows.Forms.Padding(5);
+            this.cancel_button.Name = "cancel_button";
+            this.cancel_button.Padding = new System.Windows.Forms.Padding(5);
+            this.cancel_button.Size = new System.Drawing.Size(150, 70);
+            this.cancel_button.TabIndex = 10;
+            this.cancel_button.Text = "キャンセル";
+            this.cancel_button.UseVisualStyleBackColor = true;
+            this.cancel_button.Click += new System.EventHandler(this.cancel_button_Click);
             // 
             // label1
             // 
@@ -157,7 +159,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.confirmButton);
             this.Name = "OutputPayeePage";
             this.Text = "振込先情報出力画面";
@@ -169,7 +171,7 @@
         #endregion
 
         private System.Windows.Forms.Button confirmButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;

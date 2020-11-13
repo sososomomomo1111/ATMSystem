@@ -12,9 +12,29 @@ namespace ATMSystem
 {
     public partial class ConfirmFundPage : Form
     {
+        public bool isCanceled { set; get; } = false;
+
         public ConfirmFundPage()
         {
             InitializeComponent();
         }
+
+        public ConfirmFundPage(int amount,int newRest)
+        {
+            label3.Text = amount.ToString();
+            label5.Text = newRest.ToString();
+        }
+
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void cancel_button_Click(object sender, EventArgs e)
+        {
+            isCanceled = true;
+        }
     }
+
 }
