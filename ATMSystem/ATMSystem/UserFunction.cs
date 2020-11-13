@@ -18,7 +18,7 @@ namespace ATMSystem
         requestPayeeID,
 
 
-       
+
 
     }
 
@@ -36,7 +36,7 @@ namespace ATMSystem
         public int amount { get; set; }
         int pw;
         Account userAccount, payeeAccount;
-
+        Bill bill1k, bill5k, bill10k;
 
         public UserFunction(string str)
         {
@@ -53,7 +53,13 @@ namespace ATMSystem
             };
             // functionDic.Add(FC.confirmID, confirmID);
 
-
+            //紙幣更新確認用
+            //bill1k = new Bill("1000");
+            //bill5k = new Bill("5000");
+            //bill10k = new Bill("10000");
+            //bill1k.calculateCount(15000);
+            //bill5k.calculateCount(15000);
+            //bill10k.calculateCount(15000);
 
             functionName = str;
             switch (str)
@@ -162,7 +168,7 @@ namespace ATMSystem
 
         void checkPW(int PW)
         {
-            if(userAccount.PW != pw)
+            if (userAccount.PW != pw)
             {
                 canceled = true;
                 MessageBox.Show("パスワードが一致しません。機能選択画面に戻ります。");
@@ -175,13 +181,31 @@ namespace ATMSystem
         {
             if (functionName == "deposit")
             {
-               InputDepositAmountPage inputDepositAmountPage = new InputDepositAmountPage();
+                InputDepositAmountPage inputDepositAmountPage = new InputDepositAmountPage();
                 Application.Run(inputDepositAmountPage);
             }
-            else{
+            else
+            {
                 InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);
                 Application.Run(inputAmountPage);
             }
+        }
+
+        void outputPayee()
+        {
+
+        }
+        void outputTransaction()
+        {
+
+        }
+        void outputRest()
+        {
+
+        }
+        void outputLog()
+        {
+            //ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id);
         }
 
     }
