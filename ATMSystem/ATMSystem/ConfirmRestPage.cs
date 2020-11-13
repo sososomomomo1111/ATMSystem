@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ATMSystem
 {
-    public partial class ConfirmPage : Form
+    public partial class ConfirmRestPage : Form
     {
-        public ConfirmPage()
+        public ConfirmRestPage()
         {
             InitializeComponent();
         }

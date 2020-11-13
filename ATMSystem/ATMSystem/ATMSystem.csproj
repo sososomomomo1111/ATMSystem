@@ -64,17 +64,35 @@
     <Compile Include="Account.cs" />
     <Compile Include="Atm.cs" />
     <Compile Include="Bill.cs" />
-    <Compile Include="ConfirmPage.cs">
+    <Compile Include="ConfirmDepositPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfirmPage.Designer.cs">
-      <DependentUpon>ConfirmPage.cs</DependentUpon>
+    <Compile Include="ConfirmDepositPage.designer.cs">
+      <DependentUpon>ConfirmDepositPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmFundPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmFundPage.designer.cs">
+      <DependentUpon>ConfirmFundPage.cs</DependentUpon>
     </Compile>
     <Compile Include="ConfirmBillPage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfirmBillPage.Designer.cs">
       <DependentUpon>ConfirmBillPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmRestPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmRestPage.designer.cs">
+      <DependentUpon>ConfirmRestPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmWithdrawPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmWithdrawPage.Designer.cs">
+      <DependentUpon>ConfirmWithdrawPage.cs</DependentUpon>
     </Compile>
     <Compile Include="InputAmountPage.cs">
       <SubType>Form</SubType>
@@ -113,6 +131,12 @@
       <DependentUpon>InputPWPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Log.cs" />
+    <Compile Include="OutputPayeePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutputPayeePage.Designer.cs">
+      <DependentUpon>OutputPayeePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="OwnerFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,8 +156,17 @@
     <EmbeddedResource Include="ConfirmBillPage.resx">
       <DependentUpon>ConfirmBillPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmPage.resx">
-      <DependentUpon>ConfirmPage.cs</DependentUpon>
+    <EmbeddedResource Include="ConfirmDepositPage.resx">
+      <DependentUpon>ConfirmDepositPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmFundPage.resx">
+      <DependentUpon>ConfirmFundPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmRestPage.resx">
+      <DependentUpon>ConfirmRestPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmWithdrawPage.resx">
+      <DependentUpon>ConfirmWithdrawPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputAmountPage.resx">
       <DependentUpon>InputAmountPage.cs</DependentUpon>
@@ -152,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputPWPage.resx">
       <DependentUpon>InputPWPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutputPayeePage.resx">
+      <DependentUpon>OutputPayeePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
