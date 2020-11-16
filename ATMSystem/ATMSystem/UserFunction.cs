@@ -212,10 +212,12 @@ namespace ATMSystem
             }
             else//引出、振込
             {
-                InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName);
+                InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName,FEE);
                 Application.Run(inputAmountPage);
-                //amount=InputAmountPage.amount;
-                checkAmount();
+                if (!(canceled =!inputAmountPage.charCorrect))
+                    checkAmount();
+                amount=inputAmountPage.amount;
+
             }
         }
 
@@ -232,7 +234,7 @@ namespace ATMSystem
 
         void outputPayee()
         {
-            OutputPayeePage outputPayeePage = new OutputPayeePage(amount, payeeAccount.name);
+            OutputPayeePage outputPayeePage = new OutputPayeePage(payeeAccount.ID, payeeAccount.name);
             Application.Run(outputPayeePage);
             canceled = outputPayeePage.isCanceled;
         }

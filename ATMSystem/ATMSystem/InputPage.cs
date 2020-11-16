@@ -18,19 +18,21 @@ namespace ATMSystem
         public bool charCorrect { get; set; }
 
         protected const int WAITTIME = 4;
-        bool digitsIsCorrect;
+        protected bool digitsIsCorrect;
 
 
         public InputPage()
         {
             InitializeComponent();
             note.Text = "";
+            this.ActiveControl = textBox;
         }
 
         public InputPage(string text,string exp) : this()
         {
             label1.Text = text;
             explain.Text = exp;
+           // this.ActiveControl = textBox;
         }
 
         protected void label1_Click(object sender, EventArgs e)

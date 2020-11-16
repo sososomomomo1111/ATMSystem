@@ -88,7 +88,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(210, 50);
             this.label5.TabIndex = 21;
-            this.label5.Text = "オオカワイユウト";
+            this.label5.Text = "アアアアアアアア";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
@@ -132,7 +132,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(210, 50);
             this.label4.TabIndex = 24;
-            this.label4.Text = "9,999,999";
+            this.label4.Text = "9999999";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
