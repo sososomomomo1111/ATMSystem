@@ -161,10 +161,21 @@ namespace ATMSystem
             Application.Run(inputIDPage);
             if (inputIDPage.charCorrect) payeeId = inputIDPage.id;
             if (!(canceled = inputIDPage.isCanceled))
+            {
+                isSameId(id, payeeId);
                 confirmID(payeeId, ref payeeAccount);//ID確認もID要求の中で行う
+            }
         }
 
-
+        bool isSameId(int idd, int payeeIdd)
+        {
+            bool isSame;
+            if (isSame = (idd == payeeIdd))
+            {
+                MessageBox.Show("IDが振込先IDと同じです。機能選択画面に戻ります。");
+            }
+            return canceled=isSame;
+        }
 
 
         void requestPW()//PW入力
@@ -212,11 +223,13 @@ namespace ATMSystem
             }
             else//引出、振込
             {
-                InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName,FEE);
+                InputAmountPage inputAmountPage = new InputAmountPage("取引金額", "取引金額を入力してください", functionName, FEE);
                 Application.Run(inputAmountPage);
-                if (!(canceled =!inputAmountPage.charCorrect))
+                if (!(canceled = !inputAmountPage.charCorrect))
+                {
+                    amount = inputAmountPage.amount;
                     checkAmount();
-                amount=inputAmountPage.amount;
+                }
 
             }
         }
