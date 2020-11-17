@@ -36,7 +36,9 @@ namespace ATMSystem
 
         public OwnerFunction(string str)
         {
-
+            bill1k = new Bill("1000");
+            bill5k = new Bill("5000");
+            bill10k = new Bill("10000");
 
             functionDic = new Dictionary<oFC, FunctionPart>
             {
@@ -117,8 +119,14 @@ namespace ATMSystem
 
         void controlBillCount()
         {
-            ControlBillCountPage controlBillCountPage = new ControlBillCountPage();
+            ControlBillCountPage controlBillCountPage = new ControlBillCountPage(bill1k.count,bill5k.count,bill10k.count);
             Application.Run(controlBillCountPage);
+            if(!(canceled= controlBillCountPage.isCanceled))
+            {
+                bill1k.updateBill(controlBillCountPage.Bill1000);
+                bill5k.updateBill(controlBillCountPage.Bill5000);
+                bill10k.updateBill(controlBillCountPage.Bill10000);
+            }
         }
 
 

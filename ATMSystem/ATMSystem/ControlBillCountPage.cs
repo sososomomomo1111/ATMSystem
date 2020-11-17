@@ -12,22 +12,32 @@ namespace ATMSystem
 {
     public partial class ControlBillCountPage : Form
     {
-        int Bill1000 = 500;
-        int Bill5000 = 500;
-        int Bill10000 = 500;
+        public bool isCanceled { set; get; } = true;
+        public int Bill1000 { get; set; }
+        public int Bill5000 { get; set; }
+        public int Bill10000 { get; set; }
         int AddBill1000;
         int AddBill5000;
         int AddBill10000;
+      
 
         public ControlBillCountPage()
         {
             InitializeComponent();
+
+        }
+
+        public ControlBillCountPage(int num1k, int num5k, int num10k) : this()
+        {
+            Bill1000 = num1k;
+            Bill5000 = num5k;
+            Bill10000 = num10k;
             label11.Text = Bill1000 + "枚";
             label12.Text = Bill5000 + "枚";
             label13.Text = Bill10000 + "枚";
-            label15.Text = "調整後紙幣枚数" + "\n残り" + (1000 - Bill1000 - AddBill1000) + "枚";
-            label16.Text = "調整後紙幣枚数" + "\n残り" + (1000 - Bill5000 - AddBill5000) + "枚";
-            label17.Text = "調整後紙幣枚数" + "\n残り" + (1000 - Bill10000 - AddBill10000) + "枚";
+            label15.Text = "調整後紙幣枚数" + "\n" + (Bill1000 + AddBill1000) + "枚";
+            label16.Text = "調整後紙幣枚数" + "\n" + (Bill5000 + AddBill5000) + "枚";
+            label17.Text = "調整後紙幣枚数" + "\n" + (Bill10000 + AddBill10000) + "枚";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,8 +51,9 @@ namespace ATMSystem
             Bill1000 += AddBill1000;
             Bill5000 += AddBill5000;
             Bill10000 += AddBill10000;
+            isCanceled = false;
+
             //機能選択画面に戻る
-            //.Show();
             this.Close();
         }
 
@@ -50,7 +61,6 @@ namespace ATMSystem
         private void button1_Click(object sender, EventArgs e)
         {
             //機能選択画面に戻る
-            //.show();
             this.Close();
         }
 
@@ -91,7 +101,7 @@ namespace ATMSystem
                 button2.Enabled = false;
                 textBox1.ForeColor = Color.Red;
             }
-            else if(Bill1000 + AddBill1000 < 0)
+            else if (Bill1000 + AddBill1000 < 0)
             {
                 label14.Text = "引き出すことができません";
                 label14.Visible = true;
@@ -104,7 +114,6 @@ namespace ATMSystem
             }
 
             label15.Text = "調整後紙幣枚数" + "\n" + (Bill1000 + AddBill1000) + "枚";
-            AddBill1000 = 0;
         }
 
         //5000円入力テキストボックス
@@ -157,7 +166,7 @@ namespace ATMSystem
             }
 
             label16.Text = "調整後紙幣枚数" + "\n" + (Bill5000 + AddBill5000) + "枚";
-            AddBill5000 = 0;
+          
         }
 
         //10000円入力テキストボックス
@@ -210,7 +219,7 @@ namespace ATMSystem
             }
 
             label17.Text = "調整後紙幣枚数" + "\n" + (Bill10000 + AddBill10000) + "枚";
-            AddBill10000 = 0;
+           
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ATMSystem
 
         public Bill()
         {
-            count = MAXCOUNT/2;
+            count = MAXCOUNT / 2;
         }
 
         public Bill(string am)
@@ -72,7 +72,7 @@ namespace ATMSystem
         }
 
         //枚数で更新
-        void updateBill(int newCount)//更新してファイルに書き込み
+        public void updateBill(int newCount)//更新してファイルに書き込み
         {
             Encoding sjis = Encoding.GetEncoding("Shift_JIS");
             StreamReader sr = null;
@@ -106,7 +106,7 @@ namespace ATMSystem
                     }
                 }
                 sr.Close();
-                sw = new StreamWriter("bill.csv",false,sjis);
+                sw = new StreamWriter("bill.csv", false, sjis);
                 foreach (var i in readStringList)
                 {
                     sw.WriteLine(i);
