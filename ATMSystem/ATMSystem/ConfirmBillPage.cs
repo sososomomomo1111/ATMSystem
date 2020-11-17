@@ -23,5 +23,16 @@ namespace ATMSystem
         {
             this.Close();
         }
+
+        private void label1k_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfirmBillPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
