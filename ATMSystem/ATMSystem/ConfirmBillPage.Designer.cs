@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1k = new System.Windows.Forms.Label();
+            this.label5k = new System.Windows.Forms.Label();
+            this.label10k = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,41 +53,41 @@
             this.label1.Text = "各紙幣の枚数";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // label1k
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(30, 186);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(225, 39);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "千円札";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label1k.BackColor = System.Drawing.Color.White;
+            this.label1k.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1k.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1k.Location = new System.Drawing.Point(30, 186);
+            this.label1k.Name = "label1k";
+            this.label1k.Size = new System.Drawing.Size(225, 39);
+            this.label1k.TabIndex = 1;
+            this.label1k.Text = "千円札";
+            this.label1k.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // label5k
             // 
-            this.textBox2.BackColor = System.Drawing.Color.White;
-            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox2.Location = new System.Drawing.Point(287, 186);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(225, 39);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "五千円札";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label5k.BackColor = System.Drawing.Color.White;
+            this.label5k.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5k.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5k.Location = new System.Drawing.Point(287, 186);
+            this.label5k.Name = "label5k";
+            this.label5k.Size = new System.Drawing.Size(225, 39);
+            this.label5k.TabIndex = 1;
+            this.label5k.Text = "五千円札";
+            this.label5k.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // label10k
             // 
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox3.Location = new System.Drawing.Point(543, 186);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(225, 39);
-            this.textBox3.TabIndex = 1;
-            this.textBox3.Text = "一万円札";
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label10k.BackColor = System.Drawing.Color.White;
+            this.label10k.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10k.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label10k.Location = new System.Drawing.Point(543, 186);
+            this.label10k.Name = "label10k";
+            this.label10k.Size = new System.Drawing.Size(225, 39);
+            this.label10k.TabIndex = 1;
+            this.label10k.Text = "一万円札";
+            this.label10k.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
@@ -171,24 +171,24 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label10k);
+            this.Controls.Add(this.label5k);
+            this.Controls.Add(this.label1k);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ConfirmBillPage";
             this.Text = "紙幣枚数確認画面";
+            this.Load += new System.EventHandler(this.ConfirmBillPage_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label1k;
+        private System.Windows.Forms.Label label5k;
+        private System.Windows.Forms.Label label10k;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
