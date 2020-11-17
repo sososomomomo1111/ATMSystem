@@ -69,6 +69,10 @@
             this.textBox.TabIndex = 2;
             this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -117,6 +121,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InputPage";
             this.Text = "InputPage";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputPage_FormClosing);
+            this.Shown += new System.EventHandler(this.InputPage_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

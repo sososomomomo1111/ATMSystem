@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace ATMSystem
 {
@@ -25,12 +26,24 @@ namespace ATMSystem
         {
             InitializeComponent();
             note.Text = "";
+            
         }
 
+        private void InputPage_Shown(object sender, EventArgs e)
+        {
+            string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
+            serialPort1.BaudRate = 115200;
+            serialPort1.DataBits = 8;
+            serialPort1.PortName = ports[0];
+            serialPort1.Open();
+
+            textBox.Focus();
+        }
         public InputPage(string text,string exp) : this()
         {
             label1.Text = text;
             explain.Text = exp;
+
         }
 
         protected void label1_Click(object sender, EventArgs e)
@@ -150,7 +163,19 @@ namespace ATMSystem
             textBox.Text = "";//textBoxクリア
         }
 
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            int str = serialPort1.ReadByte();
+            string num = Convert.ToString((char)str);
+            Invoke(new MethodInvoker(() => textBox.Text = textBox.Text + num));
+            
+        }
 
+        private void InputPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+        
     }
 
 }

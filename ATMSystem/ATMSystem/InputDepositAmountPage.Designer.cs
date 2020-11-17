@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.note = new System.Windows.Forms.Label();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // confirmButton
@@ -131,7 +133,7 @@
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox1.Location = new System.Drawing.Point(310, 54);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 43);
+            this.textBox1.Size = new System.Drawing.Size(246, 31);
             this.textBox1.TabIndex = 9;
             // 
             // textBox2
@@ -139,7 +141,7 @@
             this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox2.Location = new System.Drawing.Point(310, 108);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(246, 43);
+            this.textBox2.Size = new System.Drawing.Size(246, 31);
             this.textBox2.TabIndex = 10;
             // 
             // textBox3
@@ -147,7 +149,7 @@
             this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox3.Location = new System.Drawing.Point(310, 167);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(246, 43);
+            this.textBox3.Size = new System.Drawing.Size(246, 31);
             this.textBox3.TabIndex = 11;
             // 
             // label7
@@ -189,6 +191,11 @@
             this.note.TabIndex = 15;
             this.note.Text = "Note";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.BaudRate = 115200;
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // InputDepositAmountPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -210,6 +217,8 @@
             this.Controls.Add(this.confirmButton);
             this.Name = "InputDepositAmountPage";
             this.Text = "預入金額入力画面";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputPage_FormClosing_1);
+            this.Shown += new System.EventHandler(this.InputDepositAmountPage_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +241,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label note;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }

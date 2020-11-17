@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace ATMSystem
 {
@@ -17,10 +18,23 @@ namespace ATMSystem
         public int onebills { set; get; } = 0;   //千円札枚数
 
         const int BILLLIMIT = 20;
+        string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
 
         public InputDepositAmountPage()
         {
             InitializeComponent();
+
+        }
+        private void InputDepositAmountPage_Shown(object sender, EventArgs e)
+        {
+            string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
+            serialPort1.BaudRate = 115200;
+            serialPort1.DataBits = 8;
+            serialPort1.PortName = ports[0];
+            serialPort1.Open();
+
+            textBox1.Focus();
+
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
@@ -63,5 +77,21 @@ namespace ATMSystem
         {
             this.Close();
         }
+
+        protected void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            if (this.ActiveControl.GetType().Equals(typeof(System.Windows.Forms.TextBox)))
+            {
+                int str = serialPort1.ReadByte();
+                string num = Convert.ToString((char)str);
+                Invoke(new MethodInvoker(() => this.ActiveControl.Text = this.ActiveControl.Text + num));
+            }
+        }
+
+        private void InputPage_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+
+        }
+        
     }
 }
