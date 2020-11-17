@@ -31,7 +31,7 @@
             this.confirmButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.RestLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // confirmButton
@@ -73,25 +73,25 @@
             this.label1.Text = "残高";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // RestLabel
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RestLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(290, 145);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(220, 70);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "\\99,999,999";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RestLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RestLabel.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.RestLabel.Location = new System.Drawing.Point(290, 145);
+            this.RestLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.RestLabel.Name = "RestLabel";
+            this.RestLabel.Size = new System.Drawing.Size(220, 70);
+            this.RestLabel.TabIndex = 23;
+            this.RestLabel.Text = "\\99,999,999";
+            this.RestLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ConfirmRestPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.RestLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.confirmButton);
@@ -106,6 +106,6 @@
         private System.Windows.Forms.Button confirmButton;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label RestLabel;
     }
 }

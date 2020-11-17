@@ -16,24 +16,37 @@ namespace ATMSystem
         public int fivebills { set; get; } = 0;  //五千円札枚数
         public int onebills { set; get; } = 0;   //千円札枚数
 
-        const int BILLLIMIT = 20;
+        const int BILLLIMIT = 20;                //預入限度枚数、各種
+
+        public bool isCanceled = true;           //true:isCancel()を実行  false:isCancel()を実行しない
+
+        public bool charCorrect { get; set; }
+
+        protected const int WAITTIME = 4;
 
         public InputDepositAmountPage()
         {
             InitializeComponent();
+            note.Text = "";
+            textBox1.Text = "0";
+            textBox2.Text = "0";
+            textBox3.Text = "0";
         }
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
             //一万円札
-            var textBox1 = (System.Windows.Forms.TextBox)sender;
+            //var textBox1 = (System.Windows.Forms.TextBox)sender;
             var tenthousandbill = textBox1.Text.ToString();
             //五千円札
-            var textBox2 = (System.Windows.Forms.TextBox)sender;
+            //var textBox2 = (System.Windows.Forms.TextBox)sender;
             var fivethousandbill = textBox2.Text.ToString();
             //千円札
-            var textBox3 = (System.Windows.Forms.TextBox)sender;
+            //var textBox3 = (System.Windows.Forms.TextBox)sender;
             var onethousandbill = textBox3.Text.ToString();
+
+            charCorrect = true;
+            isCanceled = false;
 
             try
             {
@@ -43,20 +56,54 @@ namespace ATMSystem
             }
             catch (FormatException)
             {
-                note.Text = string.Format("数字を入力してください。");
+                isCanceled = true;
+                charCorrect = false;
+                for (int i = 0; i < WAITTIME; i++)
+                {
+                    string noteStr = "数字以外の文字が入力されました。";
+                    if (tenthousandbill == "" || fivethousandbill == "" || onethousandbill == "")
+                        noteStr = "入力されていない項目が存在します。";
+
+                    note.Text = string.Format(noteStr + "\n{0}秒後に機能選択画面に戻ります。", WAITTIME - i);
+                    var t = Task.Delay(1000);
+                    t.Wait();
+                }
+                this.Close();
+            }
+            catch (OverflowException)
+            {
+                charCorrect = false;
+                note.Text = string.Format("{0}枚以下を入力してください。", BILLLIMIT);
                 textBox1.Text = "";//textBox1クリア
                 textBox2.Text = "";//textBox2クリア
                 textBox3.Text = "";//textBox3クリア
             }
-            catch (OverflowException) 
-            {
-                note.Text = string.Format("{0}枚以下を入力してください。", BILLLIMIT);
-            }
-           // if//20枚以上の判定
 
-            textBox1.Text = "";//textBox1クリア
-            textBox2.Text = "";//textBox2クリア
-            textBox3.Text = "";//textBox3クリア
+            //預入限度紙幣枚数の判定
+            if (tenbills > BILLLIMIT || fivebills > BILLLIMIT || onebills > BILLLIMIT)
+            {
+                charCorrect = false;
+                note.Text = string.Format("{0}枚以下を入力してください。", BILLLIMIT);
+                textBox1.Text = "0";//textBox1クリア
+                textBox2.Text = "0";//textBox2クリア
+                textBox3.Text = "0";//textBox3クリア
+            }
+
+            if(tenbills==0 && fivebills == 0 && onebills == 0)
+            {
+                charCorrect = false;
+                note.Text = string.Format("すべての紙幣枚数が0です。");
+                textBox1.Text = "0";//textBox1クリア
+                textBox2.Text = "0";//textBox2クリア
+                textBox3.Text = "0";//textBox3クリア
+            }
+
+            if(isCanceled ||(!isCanceled && charCorrect))
+            {
+                this.Close();
+            }
+
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

@@ -34,6 +34,7 @@ namespace ATMSystem
         private void cancel_button_Click(object sender, EventArgs e)
         {
             isCanceled = true;
+            this.Close();
         }
     }
 

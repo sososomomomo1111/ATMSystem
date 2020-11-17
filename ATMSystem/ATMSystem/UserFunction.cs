@@ -48,6 +48,9 @@ namespace ATMSystem
             functionList.Add(FC.requestUserID);//ユーザーIDは必須なので無条件で追加
             canceled = false;
             //fcNum = 1;
+            bill1k = new Bill("1000");
+            bill5k = new Bill("5000");
+            bill10k = new Bill("10000");
             functionDic = new Dictionary<FC, FunctionPart>
             {
                 { FC.requestUserID, requestUserID },
@@ -174,7 +177,7 @@ namespace ATMSystem
             {
                 MessageBox.Show("IDが振込先IDと同じです。機能選択画面に戻ります。");
             }
-            return canceled=isSame;
+            return canceled = isSame;
         }
 
 
@@ -204,21 +207,24 @@ namespace ATMSystem
             {
                 InputDepositAmountPage inputDepositAmountPage = new InputDepositAmountPage();
                 Application.Run(inputDepositAmountPage);
-                var one = inputDepositAmountPage.onebills;
-                var five = inputDepositAmountPage.fivebills;
-                var ten = inputDepositAmountPage.tenbills;
-                amount = one * bill1k.amount + five * bill5k.amount + ten * bill10k.amount;//枚数から金額計算
+                if (!(canceled = inputDepositAmountPage.isCanceled))
+                {
+                    var one = inputDepositAmountPage.onebills;
+                    var five = inputDepositAmountPage.fivebills;
+                    var ten = inputDepositAmountPage.tenbills;
+                    amount = one * bill1k.amount + five * bill5k.amount + ten * bill10k.amount;//枚数から金額計算
 
-                if (bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
-                {
-                    canceled = true;
-                    MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
-                }
-                else
-                {
-                    bill1k.calculateCount(amount);
-                    bill5k.calculateCount(amount);
-                    bill10k.calculateCount(amount);
+                    if (bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
+                    {
+                        canceled = true;
+                        MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
+                    }
+                    else
+                    {
+                        bill1k.calculateCount(amount);
+                        bill5k.calculateCount(amount);
+                        bill10k.calculateCount(amount);
+                    }
                 }
             }
             else//引出、振込
@@ -267,6 +273,8 @@ namespace ATMSystem
                 case "fund":
                     ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
                     Application.Run(confirmFundPage);
+                    canceled = confirmFundPage.isCanceled;
+
                     break;
                 case "confirmRest":
                     ConfirmRestPage confirmRestPage = new ConfirmRestPage();
@@ -281,13 +289,10 @@ namespace ATMSystem
                     break;
             }
         }
-        void updateAccount()
+        void updateAccount(Account account)
         {
 
         }
 
     }
-
-
-
 }

@@ -64,6 +64,7 @@
             this.confirmButton.TabIndex = 8;
             this.confirmButton.Text = "確認";
             this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // button1
             // 
@@ -76,6 +77,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "キャンセル";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.cancel_button_Click);
             // 
             // label4
             // 

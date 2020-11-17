@@ -12,9 +12,20 @@ namespace ATMSystem
 {
     public partial class ConfirmRestPage : Form
     {
+
+
         public ConfirmRestPage()
         {
             InitializeComponent();
+        }
+        public ConfirmRestPage(int rest):this()
+        {
+           RestLabel.Text=rest.ToString();
+        }
+
+        private void confirmButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

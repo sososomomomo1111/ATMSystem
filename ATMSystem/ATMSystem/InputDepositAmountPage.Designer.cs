@@ -131,24 +131,27 @@
             this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox1.Location = new System.Drawing.Point(310, 54);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 43);
+            this.textBox1.Size = new System.Drawing.Size(246, 31);
             this.textBox1.TabIndex = 9;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox2.Location = new System.Drawing.Point(310, 108);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(246, 43);
+            this.textBox2.Size = new System.Drawing.Size(246, 31);
             this.textBox2.TabIndex = 10;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 18F);
             this.textBox3.Location = new System.Drawing.Point(310, 167);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(246, 43);
+            this.textBox3.Size = new System.Drawing.Size(246, 31);
             this.textBox3.TabIndex = 11;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
@@ -163,9 +166,9 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("MS UI Gothic", 10F);
-            this.label8.Location = new System.Drawing.Point(10, 270);
+            this.label8.Location = new System.Drawing.Point(10, 284);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(447, 51);
+            this.label8.Size = new System.Drawing.Size(492, 62);
             this.label8.TabIndex = 13;
             this.label8.Text = "※一回の預け入れ限度枚数は（限度枚数）を超える金額の取り扱いはできません";
             // 
@@ -185,7 +188,7 @@
             this.note.Location = new System.Drawing.Point(164, 217);
             this.note.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.note.Name = "note";
-            this.note.Size = new System.Drawing.Size(357, 35);
+            this.note.Size = new System.Drawing.Size(511, 53);
             this.note.TabIndex = 15;
             this.note.Text = "Note";
             // 
