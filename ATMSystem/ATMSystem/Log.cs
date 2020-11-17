@@ -14,61 +14,61 @@ namespace ATMSystem
         DateTime date = DateTime.Now;
         int ID;
         int rest = 200000;
-        int ammount = 100000;
+        int ammount = -500000;
         string name = "岡本";
-        string transitionType = "預入";
-        
-
-
-
+        string transitionType = "振込";
         public void addLog(int id)
         {
             Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
             //ファイルのパス
-            string filePath = id + "log.csv";
+            string filePath = id + "\\" + id + "log.csv";
 
             //テキストファイルからすべて読み込む
-            string[] ss = System.IO.File.ReadAllLines(filePath,sjisEnc);
+            string[] ss = System.IO.File.ReadAllLines(filePath, sjisEnc);
             //Listに変換
             List<string> sss = new List<string>(ss);
 
+            //listの要素の数を取得
             int listcount = sss.Count;
-            if (listcount <= 31)
-            {
-                sss.RemoveAt(1);
-            }
 
-
-            //ファイルに上書き
-            //File.WriteAllLines(filePath,sss,sjisEnc);
-
-            
-            
 
             switch (transitionType)
+            {
+                case "預入":
+                    sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + null + "," + null + "," + ammount + "," + rest);
+                    break;
+
+                case "引出":
+                    sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + null + "," + ammount + "," + null + "," + (rest + 220));
+                    sss.Add(date.ToString("yy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
+                    break;
+
+                case "振込":
+                    if (ammount < 0)
+                    {
+                        sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + name + "," + ammount + "," + null + "," + (rest + 220));
+                        sss.Add(date.ToString("yy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
+                    }
+                    else
+                        sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + name + "," + null + "," + ammount + "," + rest);
+
+                    break;
+
+            }
+
+            //先頭からログ情報が30件になるように削除
+            if (listcount > 30)
+            {
+                int deli = listcount - 30;
+                for (int i = 0; i <= deli; i++)
                 {
-                    case "預入":
-                    sss.Add(date+","+transitionType+","+name+","+null+","+ammount+","+rest);
-
-                        break;
-
-                    case "引出":
-                        break;
-
-                    case "振込":
-                        break;
-
+                    sss.RemoveAt(1);
                 }
-            File.WriteAllLines(filePath, sss, sjisEnc);
-            /*
-            // ファイルを書き込みモード（上書き）で開く
-            StreamWriter file = new StreamWriter(@id +"log.csv", false, Encoding.UTF8);
-            // ファイルに書き込む
-            file.WriteLine(date + transitionType + name + ammount+rest+"\n");
-            // ファイルを閉じる
-            file.Close();
-            */
-        }
-        }
+            }
 
+            //ファイルに書き込み
+            File.WriteAllLines(filePath, sss, sjisEnc);
+
+        }
     }
+}
