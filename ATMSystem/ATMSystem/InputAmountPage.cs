@@ -27,7 +27,7 @@ namespace ATMSystem
         {
             functionName = fn;
             string s = string.Format("※手数料{0}円かかります。", fee);
-            if (fn == "withdraw")
+            if (functionName == "withdraw")
             {
                 s += string.Format("\n※限度額{0}円を超える引き出しは出来ません。\n※", AMOUNTLIMIT);
             }
@@ -101,5 +101,7 @@ namespace ATMSystem
 
 
         }
+
+       
     }
 }

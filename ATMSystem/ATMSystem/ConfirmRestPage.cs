@@ -20,7 +20,7 @@ namespace ATMSystem
         }
         public ConfirmRestPage(int rest):this()
         {
-           RestLabel.Text=rest.ToString();
+           RestLabel.Text="\\"+rest.ToString();
         }
 
         private void confirmButton_Click(object sender, EventArgs e)

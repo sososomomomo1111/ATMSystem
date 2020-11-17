@@ -117,7 +117,8 @@ namespace ATMSystem
 
         void controlBillCount()
         {
-
+            ControlBillCountPage controlBillCountPage = new ControlBillCountPage();
+            Application.Run(controlBillCountPage);
         }
 
 

@@ -54,7 +54,7 @@ namespace ATMSystem
             PW = int.Parse(values[2]);
             rest = int.Parse(values[3]);
 
-            System.Console.ReadKey();
+           // System.Console.ReadKey();
             sr.Close();
         }
 

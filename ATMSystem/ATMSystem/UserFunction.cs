@@ -97,6 +97,7 @@ namespace ATMSystem
                     break;
                 case "register":
                     functionList.Add(FC.requestUserPW);
+                    functionList.Add(FC.outputTransaction);
                     break;
 
                 default:
@@ -219,12 +220,7 @@ namespace ATMSystem
                         canceled = true;
                         MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
                     }
-                    else
-                    {
-                        bill1k.calculateCount(amount);
-                        bill5k.calculateCount(amount);
-                        bill10k.calculateCount(amount);
-                    }
+                   
                 }
             }
             else//引出、振込
@@ -233,6 +229,11 @@ namespace ATMSystem
                 Application.Run(inputAmountPage);
                 if (!(canceled = !inputAmountPage.charCorrect))
                 {
+                    if(functionName=="withdraw" &&(amount % 1000) != 0)
+                    {
+                        canceled = true;
+                        MessageBox.Show("1000円単位で入力してください。機能選択画面に戻ります。");
+                    }
                     amount = inputAmountPage.amount;
                     checkAmount();
                 }
@@ -240,6 +241,13 @@ namespace ATMSystem
             }
         }
 
+        void updateBill()
+        {
+            //紙幣更新
+            bill1k.calculateCount(amount);
+            bill5k.calculateCount(amount);
+            bill10k.calculateCount(amount);
+        }
 
         void checkAmount()//引出、振込時のみ金額が足りるか確認
         {
@@ -263,8 +271,41 @@ namespace ATMSystem
             switch (functionName)
             {
                 case "deposit":
-                    ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage();
+                    ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage(amount,userAccount.rest);
                     Application.Run(confirmDepositPage);
+
+                    break;
+                case "withdraw":
+                    ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage(amount,userAccount.rest);
+                    Application.Run(confirmWithdrawPage);
+                    break;
+                case "fund":
+                    ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
+                    Application.Run(confirmFundPage);
+                    canceled = confirmFundPage.isCanceled;
+
+                    break;
+                case "confirmRest":
+                    ConfirmRestPage confirmRestPage = new ConfirmRestPage(userAccount.rest);
+                    Application.Run(confirmRestPage);
+                    break;
+                case "register":
+                    ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id.ToString());
+                    Application.Run(confirmRegisterPage);
+                    break;
+
+                default:
+                    functionList = null;
+                    break;
+            }
+        }
+        void updateAccount()
+        {
+            switch (functionName)
+            {
+                case "deposit":
+                    userAccount.rest += amount;
+                    userAccount.updateRest();
                     break;
                 case "withdraw":
                     ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage();
@@ -277,21 +318,18 @@ namespace ATMSystem
 
                     break;
                 case "confirmRest":
-                    ConfirmRestPage confirmRestPage = new ConfirmRestPage();
+                    ConfirmRestPage confirmRestPage = new ConfirmRestPage(userAccount.rest);
                     Application.Run(confirmRestPage);
                     break;
                 case "register":
-                    //ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id);
+                    ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id.ToString());
+                    Application.Run(confirmRegisterPage);
                     break;
 
                 default:
                     functionList = null;
                     break;
             }
-        }
-        void updateAccount(Account account)
-        {
-
         }
 
     }

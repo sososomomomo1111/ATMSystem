@@ -19,10 +19,10 @@ namespace ATMSystem
             InitializeComponent();
         }
 
-        public ConfirmFundPage(int amount,int newRest):this()
+        public ConfirmFundPage(int amount, int newRest) : this()
         {
-            label3.Text = amount.ToString();
-            label5.Text = newRest.ToString();
+            label3.Text = "\\" + amount.ToString();
+            label5.Text = "\\" + newRest.ToString();
         }
 
 

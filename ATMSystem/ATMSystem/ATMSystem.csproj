@@ -82,6 +82,12 @@
     <Compile Include="ConfirmBillPage.Designer.cs">
       <DependentUpon>ConfirmBillPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmRegisterPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmRegisterPage.designer.cs">
+      <DependentUpon>ConfirmRegisterPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfirmRestPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,12 @@
     </Compile>
     <Compile Include="ConfirmWithdrawPage.Designer.cs">
       <DependentUpon>ConfirmWithdrawPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlBillCountPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlBillCountPage.designer.cs">
+      <DependentUpon>ControlBillCountPage.cs</DependentUpon>
     </Compile>
     <Compile Include="InputAmountPage.cs">
       <SubType>Form</SubType>
@@ -162,11 +174,17 @@
     <EmbeddedResource Include="ConfirmFundPage.resx">
       <DependentUpon>ConfirmFundPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmRegisterPage.resx">
+      <DependentUpon>ConfirmRegisterPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfirmRestPage.resx">
       <DependentUpon>ConfirmRestPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfirmWithdrawPage.resx">
       <DependentUpon>ConfirmWithdrawPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlBillCountPage.resx">
+      <DependentUpon>ControlBillCountPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputAmountPage.resx">
       <DependentUpon>InputAmountPage.cs</DependentUpon>

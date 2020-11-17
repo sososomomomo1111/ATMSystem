@@ -30,8 +30,8 @@
         {
             this.confirmButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.rest = new System.Windows.Forms.Label();
+            this.amount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,33 +62,33 @@
             this.label1.Text = "取引内容を確認してください";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // rest
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.rest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(300, 240);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(200, 50);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "\\99,999,999";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.rest.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.rest.Location = new System.Drawing.Point(300, 240);
+            this.rest.Margin = new System.Windows.Forms.Padding(0);
+            this.rest.Name = "rest";
+            this.rest.Size = new System.Drawing.Size(200, 50);
+            this.rest.TabIndex = 11;
+            this.rest.Text = "\\99,999,999";
+            this.rest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // amount
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.amount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(300, 140);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(200, 50);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "\\99,999,999";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.amount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.amount.Font = new System.Drawing.Font("MS UI Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.amount.Location = new System.Drawing.Point(300, 140);
+            this.amount.Margin = new System.Windows.Forms.Padding(0);
+            this.amount.Name = "amount";
+            this.amount.Size = new System.Drawing.Size(200, 50);
+            this.amount.TabIndex = 12;
+            this.amount.Text = "\\99,999,999";
+            this.amount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -125,9 +125,9 @@
             this.label6.Location = new System.Drawing.Point(9, 355);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(280, 20);
+            this.label6.Size = new System.Drawing.Size(324, 20);
             this.label6.TabIndex = 15;
-            this.label6.Text = "確認ボタンを押すと最初の画面に戻ります";
+            this.label6.Text = "確認ボタンを押すと機能選択画面に戻ります";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
@@ -138,8 +138,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.amount);
+            this.Controls.Add(this.rest);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.confirmButton);
             this.Name = "ConfirmDepositPage";
@@ -152,8 +152,8 @@
 
         private System.Windows.Forms.Button confirmButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label rest;
+        private System.Windows.Forms.Label amount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
