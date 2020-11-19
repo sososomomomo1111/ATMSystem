@@ -53,8 +53,9 @@ namespace ATMSystem
                         count = int.Parse(values.Last<string>());
                     }
                 }
+                sr.Close();
             }
-            sr.Close();
+            
         }
 
 
