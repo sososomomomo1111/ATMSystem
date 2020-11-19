@@ -17,6 +17,16 @@ namespace ATMSystem
         int ammount = -500000;
         string name = "岡本";
         string transitionType = "振込";
+
+        public Log(int id,int re,int am,string nm,string tra)
+        {
+            ID = id;
+            rest = re;
+            ammount = am;
+            name = nm;
+            transitionType = tra;
+        }
+
         public void addLog(int id)
         {
             Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");

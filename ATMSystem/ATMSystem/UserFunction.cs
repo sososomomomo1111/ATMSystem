@@ -220,7 +220,7 @@ namespace ATMSystem
                         canceled = true;
                         MessageBox.Show("紙幣枚数が多すぎます。機能選択画面に戻ります。");
                     }
-                   
+
                 }
             }
             else//引出、振込
@@ -229,7 +229,7 @@ namespace ATMSystem
                 Application.Run(inputAmountPage);
                 if (!(canceled = !inputAmountPage.charCorrect))
                 {
-                    if(functionName=="withdraw" &&(amount % 1000) != 0)
+                    if (functionName == "withdraw" && (amount % 1000) != 0)
                     {
                         canceled = true;
                         MessageBox.Show("1000円単位で入力してください。機能選択画面に戻ります。");
@@ -271,15 +271,19 @@ namespace ATMSystem
             switch (functionName)
             {
                 case "deposit":
-                    ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage(amount,userAccount.rest);
+                    updateAccount();
+                    ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage(amount, userAccount.rest);
                     Application.Run(confirmDepositPage);
 
                     break;
                 case "withdraw":
-                    ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage(amount,userAccount.rest);
+                    //user
+                    updateAccount();
+                    ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage(amount, userAccount.rest);
                     Application.Run(confirmWithdrawPage);
                     break;
                 case "fund":
+                    updateAccount();
                     ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
                     Application.Run(confirmFundPage);
                     canceled = confirmFundPage.isCanceled;
@@ -299,31 +303,37 @@ namespace ATMSystem
                     break;
             }
         }
-        void updateAccount()
+        void updateAccount()//口座、ログ情報更新
         {
+            Log log;
             switch (functionName)
             {
                 case "deposit":
                     userAccount.rest += amount;
                     userAccount.updateRest();
+                    log = new Log(userAccount.ID, userAccount.rest, amount, userAccount.name, functionName);
+                    log.addLog(userAccount.ID);
+
                     break;
                 case "withdraw":
-                    ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage();
-                    Application.Run(confirmWithdrawPage);
+                    log = new Log(userAccount.ID, userAccount.rest, -amount, userAccount.name, functionName);
+                    log.addLog(userAccount.ID);
+
                     break;
                 case "fund":
-                    ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
-                    Application.Run(confirmFundPage);
-                    canceled = confirmFundPage.isCanceled;
+                    log = new Log(userAccount.ID, userAccount.rest, -amount,payeeAccount.name, functionName);
+                    log.addLog(userAccount.ID);
+
+                    Log logg = new Log(payeeAccount.ID, payeeAccount.rest, amount, userAccount.name, functionName);
+                    log.addLog(userAccount.ID);
+
 
                     break;
                 case "confirmRest":
-                    ConfirmRestPage confirmRestPage = new ConfirmRestPage(userAccount.rest);
-                    Application.Run(confirmRestPage);
+
                     break;
                 case "register":
-                    ConfirmRegisterPage confirmRegisterPage = new ConfirmRegisterPage(id.ToString());
-                    Application.Run(confirmRegisterPage);
+
                     break;
 
                 default:

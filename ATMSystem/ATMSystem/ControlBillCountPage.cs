@@ -87,7 +87,7 @@ namespace ATMSystem
             catch (OverflowException)
             {
                 label14.Text = "桁数をオーバーしています";
-                textBox1.Text = textBox2.Text = textBox3.Text = "";
+                textBox1.Text = "";
                 label14.Visible = true;
                 button2.Enabled = false;
                 textBox1.ForeColor = Color.Red;
@@ -139,7 +139,7 @@ namespace ATMSystem
             catch (OverflowException)
             {
                 label14.Text = "桁数をオーバーしています";
-                textBox1.Text = textBox2.Text = textBox3.Text = "";
+                textBox2.Text="";
                 label14.Visible = true;
                 button2.Enabled = false;
                 textBox2.ForeColor = Color.Red;
@@ -192,7 +192,7 @@ namespace ATMSystem
             catch (OverflowException)
             {
                 label14.Text = "桁数をオーバーしています";
-                textBox1.Text = textBox2.Text = textBox3.Text = "";
+                textBox3.Text = "";
                 label14.Visible = true;
                 button2.Enabled = false;
                 textBox3.ForeColor = Color.Red;
