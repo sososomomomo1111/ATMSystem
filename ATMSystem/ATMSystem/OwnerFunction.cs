@@ -71,10 +71,14 @@ namespace ATMSystem
         {
             requestOwnerID();
             if (!isCanceled()) selectOwnerFunction();
-            foreach (var i in functionList)
+
+            if (!isCanceled())
             {
-                if (isCanceled()) break;
-                functionDic[i]();
+                foreach (var i in functionList)
+                {
+                    if (isCanceled()) break;
+                    functionDic[i]();
+                }
             }
         }
 
@@ -105,8 +109,8 @@ namespace ATMSystem
                     break;
 
                 default:
-                    functionList = null;
-
+                    functionList.Add(oFC.cancel);
+                    canceled = true;
                     break;
             }
         }
