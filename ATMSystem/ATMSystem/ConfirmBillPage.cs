@@ -12,27 +12,27 @@ namespace ATMSystem
 {
     public partial class ConfirmBillPage : Form
     {
-        Bill bill;
+        public int Bill1000 { get; set; }
+        public int Bill5000 { get; set; }
+        public int Bill10000 { get; set; }
 
         public ConfirmBillPage()
         {
             InitializeComponent();
         }
-        
+
         protected virtual void confirmButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void label1k_TextChanged(object sender, EventArgs e)
+        private void ConfirmBillPage_Shown(object sender, EventArgs e)
         {
-
+            //紙幣枚数を表示
+            label2.Text = Convert.ToString(Bill1000);
+            label3.Text = Convert.ToString(Bill5000);
+            label4.Text = Convert.ToString(Bill10000);
         }
-
-        private void ConfirmBillPage_Load(object sender, EventArgs e)
-        {
-
-        }
-
+    }
     }
 }

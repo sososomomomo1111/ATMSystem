@@ -178,7 +178,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ConfirmBillPage";
             this.Text = "紙幣枚数確認画面";
-            this.Load += new System.EventHandler(this.ConfirmBillPage_Load);
+            this.Shown += new System.EventHandler(this.ConfirmBillPage_Shown);
             this.ResumeLayout(false);
 
         }
