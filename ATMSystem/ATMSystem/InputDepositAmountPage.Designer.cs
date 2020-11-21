@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.note = new System.Windows.Forms.Label();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.SuspendLayout();
             // 
             // confirmButton
@@ -192,6 +194,10 @@
             this.note.TabIndex = 15;
             this.note.Text = "Note";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // InputDepositAmountPage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -213,6 +219,8 @@
             this.Controls.Add(this.confirmButton);
             this.Name = "InputDepositAmountPage";
             this.Text = "預入金額入力画面";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputPage_FormClosing_1);
+            this.Shown += new System.EventHandler(this.InputDepositAmountPage_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,5 +243,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         protected System.Windows.Forms.Label note;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }

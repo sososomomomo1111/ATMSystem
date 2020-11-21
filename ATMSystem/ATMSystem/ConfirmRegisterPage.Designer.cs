@@ -32,6 +32,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
+            // confirmButton
+            // 
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+            // 
             // cancelButton
             // 
             this.cancelButton.Enabled = false;

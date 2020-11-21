@@ -19,8 +19,8 @@ namespace ATMSystem
 
         public ConfirmDepositPage(int am,int re):this()
         {
-            amount.Text = am.ToString();
-            rest.Text = re.ToString();
+            amount.Text ="\\"+ am.ToString();
+            rest.Text = "\\"+re.ToString();
         }
 
         private void label6_Click(object sender, EventArgs e)

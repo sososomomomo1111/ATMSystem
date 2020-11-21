@@ -117,7 +117,7 @@ namespace ATMSystem
 
         void confirmBillCount()
         {
-            ConfirmBillPage confirmBillPage = new ConfirmBillPage();
+            ConfirmBillPage confirmBillPage = new ConfirmBillPage(bill1k.count, bill5k.count, bill10k.count);
             Application.Run(confirmBillPage);
         }
 

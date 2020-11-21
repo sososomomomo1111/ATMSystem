@@ -19,6 +19,7 @@ namespace ATMSystem
 
         outputPayee,
         outputTransaction,
+        updateAccount,
 
 
     }
@@ -58,7 +59,8 @@ namespace ATMSystem
                 { FC.requestPayeeID, requestPayeeID },
                 { FC.requestAmount, requestAmount },
                 {FC.outputPayee,outputPayee },
-                {FC.outputTransaction,outputTransaction }
+                {FC.outputTransaction,outputTransaction },
+                {FC.updateAccount,updateAccount }
 
             };
             // functionDic.Add(FC.confirmID, confirmID);
@@ -77,12 +79,16 @@ namespace ATMSystem
 
                 case "deposit":
                     functionList.Add(FC.requestAmount);
+                    functionList.Add(FC.updateAccount);
                     functionList.Add(FC.outputTransaction);
+  
                     break;
                 case "withdraw":
                     functionList.Add(FC.requestUserPW);
                     functionList.Add(FC.requestAmount);
+                    functionList.Add(FC.updateAccount);
                     functionList.Add(FC.outputTransaction);
+
                     break;
                 case "fund":
                     functionList.Add(FC.requestUserPW);
@@ -90,6 +96,7 @@ namespace ATMSystem
                     functionList.Add(FC.requestAmount);
                     functionList.Add(FC.outputPayee);
                     functionList.Add(FC.outputTransaction);
+                    functionList.Add(FC.updateAccount);
                     break;
                 case "confirmRest":
                     functionList.Add(FC.requestUserPW);
@@ -244,9 +251,9 @@ namespace ATMSystem
         void updateBill()
         {
             //紙幣更新
-            bill1k.calculateCount(amount);
-            bill5k.calculateCount(amount);
-            bill10k.calculateCount(amount);
+            bill1k.calculateCount((functionName=="withdraw")?-amount:amount);
+            bill5k.calculateCount((functionName == "withdraw") ? -amount : amount);
+            bill10k.calculateCount((functionName == "withdraw") ? -amount : amount);
         }
 
         void checkAmount()//引出、振込時のみ金額が足りるか確認
@@ -271,19 +278,15 @@ namespace ATMSystem
             switch (functionName)
             {
                 case "deposit":
-                    updateAccount();
                     ConfirmDepositPage confirmDepositPage = new ConfirmDepositPage(amount, userAccount.rest);
                     Application.Run(confirmDepositPage);
 
                     break;
                 case "withdraw":
-                    //user
-                    updateAccount();
                     ConfirmWithdrawPage confirmWithdrawPage = new ConfirmWithdrawPage(amount, userAccount.rest);
                     Application.Run(confirmWithdrawPage);
                     break;
                 case "fund":
-                    updateAccount();
                     ConfirmFundPage confirmFundPage = new ConfirmFundPage(amount, userAccount.rest - amount - FEE);
                     Application.Run(confirmFundPage);
                     canceled = confirmFundPage.isCanceled;
@@ -303,7 +306,7 @@ namespace ATMSystem
                     break;
             }
         }
-        void updateAccount()//口座、ログ情報更新
+        void updateAccount()//口座、ログ情報、紙幣情報更新
         {
             Log log;
             switch (functionName)
@@ -313,27 +316,30 @@ namespace ATMSystem
                     userAccount.updateRest();
                     log = new Log(userAccount.ID, userAccount.rest, amount, userAccount.name, functionName);
                     log.addLog(userAccount.ID);
-
+                    updateBill();
                     break;
                 case "withdraw":
+                    userAccount.rest -= amount+FEE;
+                    userAccount.updateRest();
                     log = new Log(userAccount.ID, userAccount.rest, -amount, userAccount.name, functionName);
                     log.addLog(userAccount.ID);
-
+                    updateBill();
                     break;
                 case "fund":
-                    log = new Log(userAccount.ID, userAccount.rest, -amount,payeeAccount.name, functionName);
+                    //口座ログ更新
+                    userAccount.rest -= amount+FEE;
+                    userAccount.updateRest();
+                    log = new Log(userAccount.ID, userAccount.rest, -amount, payeeAccount.name, functionName);
                     log.addLog(userAccount.ID);
-
-                    Log logg = new Log(payeeAccount.ID, payeeAccount.rest, amount, userAccount.name, functionName);
-                    log.addLog(userAccount.ID);
-
-
+                    //振込先更新
+                    payeeAccount.rest += amount;
+                    payeeAccount.updateRest();
+                    Log payeeLog = new Log(payeeAccount.ID, payeeAccount.rest, amount, userAccount.name, functionName);
+                    payeeLog.addLog(payeeAccount.ID);
                     break;
                 case "confirmRest":
-
                     break;
                 case "register":
-
                     break;
 
                 default:

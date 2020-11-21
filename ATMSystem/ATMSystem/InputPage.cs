@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace ATMSystem
 {
@@ -32,15 +33,7 @@ namespace ATMSystem
         {
             label1.Text = text;
             explain.Text = exp;
-           // this.ActiveControl = textBox;
         }
-
-        protected void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         protected void cancelButton_Click(object sender, EventArgs e)
         {
@@ -151,8 +144,34 @@ namespace ATMSystem
             note.Text = digitsIsCorrect ? "" : "桁数が間違っています。";//注意文変更
             textBox.Text = "";//textBoxクリア
         }
+        private void InputPage_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
+                serialPort1.BaudRate = 115200;
+                serialPort1.DataBits = 8;
+                serialPort1.PortName = ports[0];
+                serialPort1.Open();
+            }
+            catch(IndexOutOfRangeException)
+            {
 
+            }
+            textBox.Focus();
+        }
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            int str = serialPort1.ReadByte();
+            string num = Convert.ToString((char)str);
+            Invoke(new MethodInvoker(() => textBox.Text = textBox.Text + num));
 
+        }
+
+        private void InputPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
     }
 
 }

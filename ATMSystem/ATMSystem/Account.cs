@@ -77,9 +77,9 @@ namespace ATMSystem
 
         }
 
-        void createLog()
+        void createLog(Log newLog)
         {
-            Log newLog = new Log();
+            //Log newLog = new Log();
             newLog.addLog(ID);
         }
 

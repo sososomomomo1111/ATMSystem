@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace ATMSystem
 {
@@ -80,7 +81,7 @@ namespace ATMSystem
             }
 
             //預入限度紙幣枚数の判定
-            if (tenbills > BILLLIMIT || fivebills > BILLLIMIT || onebills > BILLLIMIT)
+            if (charCorrect&& tenbills > BILLLIMIT || fivebills > BILLLIMIT || onebills > BILLLIMIT)
             {
                 charCorrect = false;
                 note.Text = string.Format("{0}枚以下を入力してください。", BILLLIMIT);
@@ -89,7 +90,7 @@ namespace ATMSystem
                 textBox3.Text = "0";//textBox3クリア
             }
 
-            if(tenbills==0 && fivebills == 0 && onebills == 0)
+            if(charCorrect &&tenbills==0 && fivebills == 0 && onebills == 0)
             {
                 charCorrect = false;
                 note.Text = string.Format("すべての紙幣枚数が0です。");
@@ -109,6 +110,38 @@ namespace ATMSystem
         private void cancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void InputDepositAmountPage_Shown(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
+                serialPort1.BaudRate = 115200;
+                serialPort1.DataBits = 8;
+                serialPort1.PortName = ports[0];
+                serialPort1.Open();
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+            }
+
+            textBox1.Focus();
+        }
+        protected void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            if (this.ActiveControl.GetType().Equals(typeof(System.Windows.Forms.TextBox)))
+            {
+                int str = serialPort1.ReadByte();
+                string num = Convert.ToString((char)str);
+                Invoke(new MethodInvoker(() => this.ActiveControl.Text = this.ActiveControl.Text + num));
+            }
+        }
+
+        private void InputPage_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+
         }
     }
 }

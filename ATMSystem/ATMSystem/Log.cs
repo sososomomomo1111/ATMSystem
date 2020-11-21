@@ -17,6 +17,11 @@ namespace ATMSystem
         int ammount = -500000;
         string name = "岡本";
         string transitionType = "振込";
+        IDictionary<string, string> transitionMap =new Dictionary<string,string>(){
+            { "deposit","預入" },
+            {"withdraw","引き出し" },
+            {"fund","振込" }
+        };
 
         public Log(int id,int re,int am,string nm,string tra)
         {
@@ -44,23 +49,23 @@ namespace ATMSystem
 
             switch (transitionType)
             {
-                case "預入":
-                    sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + null + "," + null + "," + ammount + "," + rest);
+                case "deposit":
+                    sss.Add(date.ToString("yyyy/MM/dd") + "," +transitionMap[transitionType] + "," + null + "," + null + "," + ammount + "," + rest);
                     break;
 
-                case "引出":
-                    sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + null + "," + ammount + "," + null + "," + (rest + 220));
-                    sss.Add(date.ToString("yy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
+                case "withdraw":
+                    sss.Add(date.ToString("yyyy/MM/dd") + "," + transitionMap[transitionType] + "," + null + "," + -ammount + "," + null + "," + (rest + 220));
+                    sss.Add(date.ToString("yyyy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
                     break;
 
-                case "振込":
+                case "fund":
                     if (ammount < 0)
                     {
-                        sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + name + "," + ammount + "," + null + "," + (rest + 220));
-                        sss.Add(date.ToString("yy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
+                        sss.Add(date.ToString("yyyy/MM/dd") + "," + transitionMap[transitionType] + "," + name + "," + -ammount + "," + null + "," + (rest + 220));
+                        sss.Add(date.ToString("yyyy/MM/dd") + "," + "手数料" + "," + null + "," + 220 + "," + null + "," + rest);
                     }
                     else
-                        sss.Add(date.ToString("yy/MM/dd") + "," + transitionType + "," + name + "," + null + "," + ammount + "," + rest);
+                        sss.Add(date.ToString("yyyy/MM/dd") + "," + transitionMap[transitionType] + "," + name + "," + null + "," + ammount + "," + rest);
 
                     break;
 

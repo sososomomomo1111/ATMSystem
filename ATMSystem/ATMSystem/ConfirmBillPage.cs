@@ -21,6 +21,13 @@ namespace ATMSystem
             InitializeComponent();
         }
 
+        public ConfirmBillPage(int bl1k,int bl5k,int bl10k) : this()
+        {
+            Bill1000 = bl1k;
+            Bill5000 = bl5k;
+            Bill10000 = bl10k;
+        }
+
         protected virtual void confirmButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -34,5 +41,5 @@ namespace ATMSystem
             label4.Text = Convert.ToString(Bill10000);
         }
     }
-    }
+    
 }
