@@ -154,7 +154,7 @@ namespace ATMSystem
                 serialPort1.PortName = ports[0];
                 serialPort1.Open();
             }
-            catch(IndexOutOfRangeException)
+            catch (IndexOutOfRangeException)
             {
 
             }
