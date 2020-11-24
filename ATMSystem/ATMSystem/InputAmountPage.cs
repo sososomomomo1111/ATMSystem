@@ -98,10 +98,13 @@ namespace ATMSystem
                 charCorrect = false;
             }
 
-
-
+            else if (functionName == "withdraw" && charCorrect && num % 1000 != 0)
+            {
+                note.Text = string.Format("硬貨による取引はできません。");
+                textBox.Text = "";
+                charCorrect = false;
+            }
         }
-
        
     }
 }
