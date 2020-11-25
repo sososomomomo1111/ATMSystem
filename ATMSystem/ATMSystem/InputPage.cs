@@ -148,6 +148,7 @@ namespace ATMSystem
         {
             try
             {
+                //シリアル通信の設定
                 string[] ports = SerialPort.GetPortNames(); //ポート番号を取得
                 serialPort1.BaudRate = 115200;
                 serialPort1.DataBits = 8;
@@ -164,7 +165,7 @@ namespace ATMSystem
         {
             int str = serialPort1.ReadByte();
             string num = Convert.ToString((char)str);
-            Invoke(new MethodInvoker(() => textBox.Text = textBox.Text + num));
+            Invoke(new MethodInvoker(() => textBox.Text = textBox.Text + num));　//マイコンからの入力をテキストボックスに反映
 
         }
 
