@@ -236,6 +236,7 @@ namespace ATMSystem
                 Application.Run(inputAmountPage);
                 if (!(canceled = !inputAmountPage.charCorrect))
                 {
+                    amount = inputAmountPage.amount;
                     checkAmount();
                 }
 
