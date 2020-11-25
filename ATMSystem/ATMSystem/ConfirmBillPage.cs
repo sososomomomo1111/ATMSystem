@@ -23,6 +23,7 @@ namespace ATMSystem
 
         public ConfirmBillPage(int bl1k,int bl5k,int bl10k) : this()
         {
+            //紙幣枚数情報の取得
             Bill1000 = bl1k;
             Bill5000 = bl5k;
             Bill10000 = bl10k;
