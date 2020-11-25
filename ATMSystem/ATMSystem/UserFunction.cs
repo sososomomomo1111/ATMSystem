@@ -253,7 +253,7 @@ namespace ATMSystem
 
         void checkAmount()//引出、振込時のみ金額が足りるか確認
         {
-            if (userAccount.rest < amount)
+            if (userAccount.rest + FEE < amount)
             {
                 canceled = true;
                 MessageBox.Show("口座の残高が足りません。機能選択画面に戻ります。");
