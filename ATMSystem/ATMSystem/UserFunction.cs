@@ -236,12 +236,6 @@ namespace ATMSystem
                 Application.Run(inputAmountPage);
                 if (!(canceled = !inputAmountPage.charCorrect))
                 {
-                    if (functionName == "withdraw" && (amount % 1000) != 0)
-                    {
-                        canceled = true;
-                        MessageBox.Show("1000円単位で入力してください。機能選択画面に戻ります。");
-                    }
-                    amount = inputAmountPage.amount;
                     checkAmount();
                 }
 

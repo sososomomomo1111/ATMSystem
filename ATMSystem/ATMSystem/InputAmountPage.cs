@@ -105,7 +105,7 @@ namespace ATMSystem
                 charCorrect = false;
             }
 
-            if (functionName == "withdraw" && charCorrect && num == 0)
+            if (charCorrect && num == 0)
             {
                 note.Text = string.Format("取引金額が0です。");
                 textBox.Text = "0";
