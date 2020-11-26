@@ -14,7 +14,7 @@ namespace ATMSystem
         public int rest { get; set; }
         public string name { get; set; }
 
-        Log log;
+        //Log log;
 
         public Account(int id)
         {

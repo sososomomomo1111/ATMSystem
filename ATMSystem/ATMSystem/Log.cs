@@ -13,10 +13,10 @@ namespace ATMSystem
         Encoding sjisEnc = Encoding.GetEncoding("Shift_JIS");
         DateTime date = DateTime.Now;
         int ID;
-        int rest = 200000;
-        int ammount = -500000;
-        string name = "岡本";
-        string transitionType = "振込";
+        int rest;
+        int ammount;
+        string name;
+        string transitionType;
         IDictionary<string, string> transitionMap =new Dictionary<string,string>(){
             { "deposit","預入" },
             {"withdraw","引き出し" },
