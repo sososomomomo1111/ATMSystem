@@ -42,6 +42,7 @@ namespace ATMSystem
         int pw;
         Account userAccount, payeeAccount;
         Bill bill1k, bill5k, bill10k;
+        int one, five, ten;
 
         public UserFunction(string str)
         {
@@ -81,7 +82,7 @@ namespace ATMSystem
                     functionList.Add(FC.requestAmount);
                     functionList.Add(FC.updateAccount);
                     functionList.Add(FC.outputTransaction);
-  
+
                     break;
                 case "withdraw":
                     functionList.Add(FC.requestUserPW);
@@ -217,9 +218,9 @@ namespace ATMSystem
                 Application.Run(inputDepositAmountPage);
                 if (!(canceled = inputDepositAmountPage.isCanceled))
                 {
-                    var one = inputDepositAmountPage.onebills;
-                    var five = inputDepositAmountPage.fivebills;
-                    var ten = inputDepositAmountPage.tenbills;
+                    one = inputDepositAmountPage.onebills;
+                    five = inputDepositAmountPage.fivebills;
+                    ten = inputDepositAmountPage.tenbills;
                     amount = one * bill1k.amount + five * bill5k.amount + ten * bill10k.amount;//枚数から金額計算
 
                     if (bill1k.checkOver(one) || bill5k.checkOver(five) || bill10k.checkOver(ten))//どれか1つでもオーバーした場合
@@ -246,9 +247,19 @@ namespace ATMSystem
         void updateBill()
         {
             //紙幣更新
-            bill1k.calculateCount((functionName=="withdraw")?-amount:amount);
-            bill5k.calculateCount((functionName == "withdraw") ? -amount : amount);
-            bill10k.calculateCount((functionName == "withdraw") ? -amount : amount);
+            if (functionName == "withdraw")
+            {
+                bill1k.calculateCount(-amount);
+                bill5k.calculateCount(-amount);
+                bill10k.calculateCount(-amount);
+            }
+            else
+            {
+                bill1k.updateBill(one+bill1k.count);
+                bill5k.updateBill(five+bill5k.count);
+                bill10k.updateBill(ten+bill10k.count);
+            }
+
         }
 
         void checkAmount()//引出、振込時のみ金額が足りるか確認
@@ -314,7 +325,7 @@ namespace ATMSystem
                     updateBill();
                     break;
                 case "withdraw":
-                    userAccount.rest -= amount+FEE;
+                    userAccount.rest -= amount + FEE;
                     userAccount.updateRest();
                     log = new Log(userAccount.ID, userAccount.rest, -amount, userAccount.name, functionName);
                     log.addLog(userAccount.ID);
@@ -322,7 +333,7 @@ namespace ATMSystem
                     break;
                 case "fund":
                     //口座ログ更新
-                    userAccount.rest -= amount+FEE;
+                    userAccount.rest -= amount + FEE;
                     userAccount.updateRest();
                     log = new Log(userAccount.ID, userAccount.rest, -amount, payeeAccount.name, functionName);
                     log.addLog(userAccount.ID);
