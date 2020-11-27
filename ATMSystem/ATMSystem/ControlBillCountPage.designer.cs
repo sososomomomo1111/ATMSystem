@@ -132,7 +132,7 @@
             this.textBox1.Size = new System.Drawing.Size(180, 34);
             this.textBox1.TabIndex = 7;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // textBox2
             // 
@@ -142,7 +142,7 @@
             this.textBox2.Size = new System.Drawing.Size(180, 34);
             this.textBox2.TabIndex = 8;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // textBox3
             // 
@@ -152,7 +152,7 @@
             this.textBox3.Size = new System.Drawing.Size(180, 34);
             this.textBox3.TabIndex = 9;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // label8
             // 
@@ -314,7 +314,6 @@
             this.Name = "ControlBillCountPage";
             this.Text = "紙幣調整画面";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ControlBillCountPage_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.ControlBillCountPage_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
