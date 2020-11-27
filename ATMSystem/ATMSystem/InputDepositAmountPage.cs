@@ -98,8 +98,16 @@ namespace ATMSystem
                 textBox2.Text = "0";//textBox2クリア
                 textBox3.Text = "0";//textBox3クリア
             }
+            if (charCorrect && (tenbills < 0 || fivebills < 0 || onebills < 0))
+            {
+                charCorrect = false;
+                note.Text = string.Format("すべての紙幣枚数が0です。");
+                textBox1.Text = "0";//textBox1クリア
+                textBox2.Text = "0";//textBox2クリア
+                textBox3.Text = "0";//textBox3クリア
+            }
 
-            if(isCanceled ||(!isCanceled && charCorrect))
+            if (isCanceled ||(!isCanceled && charCorrect))
             {
                 this.Close();
             }

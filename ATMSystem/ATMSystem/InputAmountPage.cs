@@ -91,6 +91,13 @@ namespace ATMSystem
 
             }
 
+            if (charCorrect && num <= 0)
+            {
+                note.Text = string.Format("取引金額が不正です。");
+                textBox.Text = "0";
+                charCorrect = false;
+            }
+
             if (functionName == "withdraw" && charCorrect && num > AMOUNTLIMIT)
             {
                 note.Text = string.Format("取引金額が限度額を超えています。");
@@ -105,12 +112,6 @@ namespace ATMSystem
                 charCorrect = false;
             }
 
-            if (charCorrect && num == 0)
-            {
-                note.Text = string.Format("取引金額が0です。");
-                textBox.Text = "0";
-                charCorrect = false;
-            }
         }
        
     }

@@ -120,6 +120,11 @@ namespace ATMSystem
                 }
                 bill1000IsCorrect = false;
             }
+            if(bill1000IsCorrect && AddBill1000 < 0)
+            {
+                label14.Text = "入力が正しくありません";
+                bill1000IsCorrect = false;
+            }
             if (bill1000IsCorrect) judgeLimit(Bill1000 + AddBill1000, ref bill1000IsCorrect);
 
             textBox1.ForeColor = (bill1000IsCorrect) ? Color.Black : Color.Red;
@@ -147,6 +152,13 @@ namespace ATMSystem
                 }
                 bill5000IsCorrect = false;
             }
+
+            if (bill5000IsCorrect && AddBill5000 < 0)
+            {
+                label14.Text = "入力が正しくありません";
+                bill5000IsCorrect = false;
+            }
+
             if (bill5000IsCorrect) judgeLimit(Bill5000 + AddBill5000, ref bill5000IsCorrect);
 
             textBox2.ForeColor = (bill5000IsCorrect) ? Color.Black : Color.Red;
@@ -174,6 +186,13 @@ namespace ATMSystem
                 }
                 bill10000IsCorrect = false;
             }
+
+            if (bill10000IsCorrect && AddBill10000 < 0)
+            {
+                label14.Text = "入力が正しくありません";
+                bill10000IsCorrect = false;
+            }
+
             if (bill10000IsCorrect) judgeLimit(Bill10000 + AddBill10000, ref bill10000IsCorrect);
 
             textBox3.ForeColor = (bill10000IsCorrect) ? Color.Black : Color.Red;
